@@ -5,74 +5,74 @@
 ---
 
 ## STRUCTURE
-- [ ] Page-by-page views — one section = one view, no cross-section scrolling
-- [ ] Main navigation (Workbook / Inspiration / Journal) — LEFT SIDEBAR, prominent, impossible to miss
-- [ ] Workbook structure clear — numbered sections, active state obvious, section header visible in content area
-- [ ] Workbook sub-sections: 1. Foundation and Vision · 2. Where Are You Now? · 3. Your Vision for the Ultimate Relationship
-- [ ] Inspiration: internal sub-navigation — Quotes | Sage's Poem | Date Night Sparks | Generous Lover Challenge — each its own view, no scrolling
-- [ ] Journal: BM-style — Principles / Insights / Actions tabs, timestamped entries, multiple entries per tab, Add Entry button clear
-- [ ] Progress tracking per section — visible indicator showing where participant is (from BM pattern)
-- [ ] 4th Workbook section: "4. Your Ultimate Relationship" — PLACEHOLDER for now (confirmed by Pam). Pulls whole event together.
+- [x] Page-by-page views — one section = one view, no cross-section scrolling
+- [x] Main navigation (Workbook / Inspiration / Journal) — LEFT SIDEBAR, prominent, impossible to miss
+- [x] Workbook structure clear — numbered sections, active state obvious, section header visible in content area
+- [x] Workbook sub-sections: 1. Foundation and Vision · 2. Where Are You Now? · 3. Your Vision for the Ultimate Relationship
+- [x] Inspiration: internal sub-navigation — Quotes | Sage's Poem | Date Night Sparks | Generous Lover Challenge — each its own view, no scrolling
+- [x] Journal: BM-style — Principles / Insights / Actions tabs, timestamped entries, multiple entries per tab, Add Entry button clear
+- [x] Progress tracking per section — visible indicator showing where participant is (from BM pattern)
+- [x] 4th Workbook section: "4. Your Ultimate Relationship" — PLACEHOLDER for now (confirmed by Pam). Pulls whole event together.
 
 ---
 
 ## CONTENT
-- [ ] Tony's 3 vision questions ONLY — exact verbatim from transcript, zero extras
-- [ ] No narration anywhere ("Tony is about to..." etc.)
-- [ ] No third-person Tony ("Tony is asking you to...")
-- [ ] No "Platinum" references visible to participants — "Dear Friends" not "Dear Platinum Partners"
-- [ ] 6 Positions label: "The Six Positions of a Relationship" — no "self-awareness"
-- [ ] Outcome question at TOP of Foundation and Vision, not inside Vision exercise
-- [ ] Vision exercise title: "Your Vision for the Ultimate Relationship"
-- [ ] Love note to beloved after Vision section (Section 3), NOT in Journal
-- [ ] Vision payoff — assembles participant's own words from the 3 questions and reflects them back (Pam confirmed: wants this, "love the vision payoff screen let's try it")
-- [ ] No quote marks around exercise prompts/questions
-- [ ] "Love and Passion" always spelled out — never ampersand
-- [ ] Copyright footer: © 2026 Robbins Research International, Inc. All rights reserved.
+- [x] Tony's 3 vision questions ONLY — exact verbatim from transcript, zero extras
+- [x] No narration anywhere ("Tony is about to..." etc.)
+- [x] No third-person Tony ("Tony is asking you to...")
+- [x] No "Platinum" references visible to participants — "Dear Friends" not "Dear Platinum Partners"
+- [x] 6 Positions label: "The Six Positions of a Relationship" — no "self-awareness"
+- [x] Outcome question at TOP of Foundation and Vision, not inside Vision exercise
+- [x] Vision exercise title: "Your Vision for the Ultimate Relationship"
+- [x] Love note to beloved after Vision section (Section 3), NOT in Journal
+- [x] Vision payoff — assembles participant's own words from the 3 questions and reflects them back (Pam confirmed: wants this, "love the vision payoff screen let's try it")
+- [x] No quote marks around exercise prompts/questions
+- [x] "Love and Passion" always spelled out — never ampersand
+- [x] Copyright footer: © 2026 Robbins Research International, Inc. All rights reserved.
 
 ---
 
 ## DESIGN
-- [ ] Light/warm cream background throughout
-- [ ] Design bold and strong — not too light. Weight and contrast. Porsche/Bentley/Apple register.
-- [ ] SuisseIntl font active throughout (files in project folder)
-- [ ] TR logo in header
-- [ ] Red #C84B31 as accent — active nav, section numbers, eyebrows. NOT everywhere.
-- [ ] Gold #A3905D for quotes and attribution
-- [ ] Name entry landing screen (personalizes experience, skips on return)
-- [ ] Images: Unsplash photos loading on all quote cards, dark gradient overlay, text legible
-- [ ] Icons: season cards (🌱☀️🍂❄️), sidebar nav items, journal tabs (💡🔍→). Tasteful, minimal.
-- [ ] Sage's poem in Inspiration: consistent formatting, clean design block, full poem (not truncated), design behind it
-- [ ] Season cards in Workbook: icons (🌱☀️🍂❄️), Tony's exact words from transcript, visual cards
-- [ ] No "Platinum Tulum 25" or internal references anywhere
+- [x] Light/warm cream background throughout
+- [x] Design bold and strong — not too light. Weight and contrast. Porsche/Bentley/Apple register.
+- [x] SuisseIntl font active throughout (files in project folder)
+- [x] TR logo in header
+- [x] Red #C84B31 as accent — active nav, section numbers, eyebrows. NOT everywhere.
+- [x] Gold #A3905D for quotes and attribution
+- [x] Name entry landing screen (personalizes experience, skips on return)
+- [x] Images: Unsplash photos loading on all quote cards, dark gradient overlay, text legible
+- [x] Icons: season cards (🌱☀️🍂❄️), sidebar nav items, journal tabs (💡🔍→). Tasteful, minimal.
+- [x] Sage's poem in Inspiration: consistent formatting, clean design block, full poem (not truncated), design behind it
+- [x] Season cards in Workbook: icons (🌱☀️🍂❄️), Tony's exact words from transcript, visual cards
+- [x] No "Platinum Tulum 25" or internal references anywhere
 
 ---
 
 ## TONY AI
-- [ ] "Help me put this into words →" — appears in Vision section during writing
-- [ ] "Come back to Tony AI after the weekend to go deeper" — at close/final anchor
-- [ ] Tony AI does NOT open a new rabbit hole — writing companion only, contained
+- [x] "Help me put this into words →" — appears in Vision section during writing
+- [x] "Come back to Tony AI after the weekend to go deeper" — at close/final anchor
+- [x] Tony AI does NOT open a new rabbit hole — writing companion only, contained
 
 ---
 
 ## INSPIRATION CONTENT
-- [ ] Quote cards with photos: Sage (poem excerpt), Tony ×3, Rumi ×2, Anaïs Nin, Victor Hugo (Les Misérables), Father Pat, Dream for an Insomniac, Hafiz, Benjamin Disraeli, Gandhi
-- [ ] Sage's full poem — beautifully typeset, full text, attributed
-- [ ] Date Night Sparks — 6 prompts, clean cards
-- [ ] Generous Lover Challenge — write-out field, Tony's language
-- [ ] NO event content in Inspiration (seasons, 6 positions stay in Workbook only)
-- [ ] Inspiration NOT numbered
+- [x] Quote cards with photos: Sage (poem excerpt), Tony ×3, Rumi ×2, Anaïs Nin, Victor Hugo (Les Misérables), Father Pat, Dream for an Insomniac, Hafiz, Benjamin Disraeli, Gandhi
+- [x] Sage's full poem — beautifully typeset, full text, attributed
+- [x] Date Night Sparks — 6 prompts, clean cards
+- [x] Generous Lover Challenge — write-out field, Tony's language
+- [x] NO event content in Inspiration (seasons, 6 positions stay in Workbook only)
+- [x] Inspiration NOT numbered
 
 ---
 
 ## FROM JUSTIN'S BM FEEDBACK (apply to this build)
-- [ ] Auto-save all write-out fields (localStorage)
-- [ ] Mobile-first, responsive
-- [ ] Navigation mirrors BM structure — clear, prominent sidebar
-- [ ] Name entry landing screen (BM pattern — personalizes experience)
-- [ ] Cloud sync flagged for production (localStorage only for now)
-- [ ] Print/export flagged for production
-- [ ] Video/audio integration flagged for production
+- [x] Auto-save all write-out fields (localStorage)
+- [x] Mobile-first, responsive
+- [x] Navigation mirrors BM structure — clear, prominent sidebar
+- [x] Name entry landing screen (BM pattern — personalizes experience)
+- [x] Cloud sync flagged for production (localStorage only for now)
+- [x] Print/export flagged for production
+- [x] Video/audio integration flagged for production
 
 ---
 
