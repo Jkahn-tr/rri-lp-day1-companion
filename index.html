@@ -1787,6 +1787,23 @@
     margin: 0;
   }
 
+  /* ── SIDEBAR PROGRESS FOOTER ── */
+  #main-sidebar #wb-progress {
+    margin: 0 0 8px 0;
+    height: 3px;
+    background: rgba(163,144,93,0.22);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  #main-sidebar #wb-progress-label {
+    margin: 0;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(74,69,64,0.5);
+  }
+
   /* ── JOURNAL HINT ── */
   .journal-hint {
     font-family: 'SuisseIntl', sans-serif;
@@ -2227,23 +2244,35 @@
       <div class="sparks-grid">
         <div class="spark-card">
           <span class="spark-num">01</span>
-          <span class="spark-text">Ask your partner which season they feel you're in - and listen without defending.</span>
+          <span class="spark-text">Drive somewhere neither of you has been. No destination. No phones. Leave tonight.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">02</span>
-          <span class="spark-text">Read Sage's poem to each other. Out loud.</span>
+          <span class="spark-text">Tell your partner one thing you have never said out loud. Let it land. No response needed.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">03</span>
-          <span class="spark-text">Write your partner a letter about what first attracted you to them. Exchange and read.</span>
+          <span class="spark-text">Ask: which season do you feel we’re in right now? Listen without defending. Then share yours.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">04</span>
-          <span class="spark-text">Ask: "What do I do that makes you feel most loved?" Then just listen.</span>
+          <span class="spark-text">Read Sage’s poem to each other. Out loud. Slowly.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">05</span>
-          <span class="spark-text">Plan one evening this week with no screens. Just each other.</span>
+          <span class="spark-text">Write down three things you would do tonight if you were the most generous lover in the world. Then do one of them.</span>
+        </div>
+        <div class="spark-card">
+          <span class="spark-num">06</span>
+          <span class="spark-text">Cook together in complete silence. Communicate only with touch. See what you discover.</span>
+        </div>
+        <div class="spark-card">
+          <span class="spark-num">07</span>
+          <span class="spark-text">Go back to the place where you first said “I love you.” If you can’t get there, close your eyes and go there together.</span>
+        </div>
+        <div class="spark-card">
+          <span class="spark-num">08</span>
+          <span class="spark-text">Ask your partner: if we were starting over today, what would you want our first date to be? Then plan it.</span>
         </div>
       </div>
 
@@ -2365,15 +2394,15 @@ function switchMainArea(area, navItem) {
   document.querySelectorAll('.main-nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('area-' + area).classList.add('active');
   if (navItem) navItem.classList.add('active');
-  // Show/hide workbook sub-nav
+  // Dim sub-nav when not on workbook (but keep visible for wayfinding)
   const subNav = document.getElementById('wb-subnav');
-  const prog = document.getElementById('wb-progress');
-  const progLabel = document.getElementById('wb-progress-label');
-  const showWbSub = area === 'workbook';
-  if (subNav) subNav.style.display = showWbSub ? 'block' : 'none';
-  if (prog) prog.style.display = showWbSub ? 'block' : 'none';
-  if (progLabel) progLabel.style.display = showWbSub ? 'block' : 'none';
-  // Scroll content to top
+  if (subNav) {
+    subNav.style.opacity = area === 'workbook' ? '1' : '0.3';
+    subNav.style.pointerEvents = area === 'workbook' ? '' : 'none';
+  }
+  // Scroll content pane to top
+  const wbContent = document.getElementById('wb-content');
+  if (wbContent) wbContent.scrollTop = 0;
   const content = document.getElementById('area-' + area);
   if (content) content.scrollTop = 0;
 }
@@ -2385,18 +2414,31 @@ function switchArea(area, tab) { switchMainArea(area, tab); }
 const wbSections = ['foundation', 'where', 'vision'];
 const wbLabels = ['Section 1 of 3', 'Section 2 of 3', 'Section 3 of 3'];
 const wbProgress = ['33%', '66%', '100%'];
+const wbBannerNums = ['Section 01', 'Section 02', 'Section 03'];
+const wbBannerNames = ['Foundation and Vision', 'Where Are You Now?', 'Your Vision for the Ultimate Relationship'];
 
 function switchWbSection(section, navItem) {
+  // If we’re on a different area, switch to workbook first
+  if (!document.getElementById('area-workbook').classList.contains('active')) {
+    switchMainArea('workbook', document.getElementById('mnav-workbook'));
+  }
   document.querySelectorAll('.wb-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.wb-nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('wb-' + section).classList.add('active');
   if (navItem) navItem.classList.add('active');
-  const wb = document.getElementById('area-workbook');
-  if (wb) wb.scrollTop = 0;
+  // Scroll the wb-content pane (not the area) to top
+  const wbContent = document.getElementById('wb-content');
+  if (wbContent) wbContent.scrollTop = 0;
   const idx = wbSections.indexOf(section);
   if (idx >= 0) {
-    document.getElementById('wb-progress-bar').style.width = wbProgress[idx];
-    document.getElementById('wb-progress-label').textContent = wbLabels[idx];
+    const bar = document.getElementById('wb-progress-bar');
+    const label = document.getElementById('wb-progress-label');
+    const bannerNum = document.getElementById('wb-banner-num');
+    const bannerName = document.getElementById('wb-banner-name');
+    if (bar) bar.style.width = wbProgress[idx];
+    if (label) label.textContent = wbLabels[idx];
+    if (bannerNum) bannerNum.textContent = wbBannerNums[idx];
+    if (bannerName) bannerName.textContent = wbBannerNames[idx];
   }
 }
 
