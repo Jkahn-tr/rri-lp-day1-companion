@@ -1929,6 +1929,116 @@
     margin-bottom: 20px;
     letter-spacing: 0.3px;
   }
+  /* ══════════════════════════════════
+     MOBILE RESPONSIVE
+  ══════════════════════════════════ */
+  @media (max-width: 768px) {
+
+    /* Hide desktop sidebar */
+    #main-sidebar { display: none !important; }
+
+    /* Content fills full width */
+    #content-wrap { width: 100%; }
+
+    /* Mobile top bar */
+    #mobile-nav {
+      display: flex !important;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: #FDFAF5;
+      border-bottom: 1px solid rgba(163,144,93,0.25);
+      flex-direction: column;
+    }
+    #mobile-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px 8px;
+    }
+    #mobile-brand-text { text-align: left; }
+    #mobile-tabs {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 12px 0;
+      gap: 0;
+      scrollbar-width: none;
+    }
+    #mobile-tabs::-webkit-scrollbar { display: none; }
+    .mobile-tab {
+      font-family: 'SuisseIntl', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #9B8E80;
+      white-space: nowrap;
+      padding: 10px 16px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .mobile-tab.active { color: #C84B31; border-bottom-color: #C84B31; }
+
+    /* Mobile workbook sub-nav */
+    #mobile-wb-subnav {
+      display: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 6px 12px 6px;
+      gap: 0;
+      background: rgba(253,250,245,0.98);
+      border-bottom: 1px solid rgba(163,144,93,0.15);
+      scrollbar-width: none;
+    }
+    #mobile-wb-subnav.visible { display: flex !important; }
+    #mobile-wb-subnav::-webkit-scrollbar { display: none; }
+    .mobile-wb-tab {
+      font-family: 'SuisseIntl', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #9B8E80;
+      white-space: nowrap;
+      padding: 8px 14px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .mobile-wb-tab.active { color: #C84B31; border-bottom-color: #C84B31; }
+
+    /* Push content below mobile nav */
+    .area { padding-top: 100px; }
+    #area-workbook { padding-top: 140px; }
+
+    /* Content padding for mobile */
+    #wb-content { padding: 24px 20px 80px; }
+    .wb-inner { max-width: 100%; }
+    #area-inspiration,
+    #area-journal,
+    #area-ultimate { padding: 24px 20px 80px; }
+
+    /* Section titles smaller on mobile */
+    .section-title { font-size: 24px !important; }
+
+    /* Seasons 2 col on mobile */
+    .seasons-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Position cards 1 col */
+    .positions-grid { grid-template-columns: 1fr; }
+
+    /* Progress bar hidden on mobile (in sidebar) */
+    #wb-progress, #wb-progress-label { display: none !important; }
+
+    /* Copyright adjust for mobile nav bar */
+    #copyright { font-size: 9px; padding: 10px 20px; }
+  }
+
+  @media (min-width: 769px) {
+    #mobile-nav { display: none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -1944,7 +2054,27 @@
   <div style="font-family:'SuisseIntl',sans-serif;font-size:11px;color:rgba(107,98,89,0.4);margin-top:16px;">or <span onclick="startExperience()" style="cursor:pointer;text-decoration:underline;">continue as guest</span></div>
 </div>
 
-<!-- TOP NAV -->
+<!-- MOBILE NAV (hidden on desktop via CSS) -->
+<div id="mobile-nav" style="display:none;">
+  <div id="mobile-brand">
+    <div id="mobile-brand-text">
+      <div style="font-family:'SuisseIntl',sans-serif;font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:#0E0B09;">Tony and Sage Robbins</div>
+      <div style="font-family:'SuisseIntl',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#A3905D;">Love and Passion</div>
+    </div>
+  </div>
+  <div id="mobile-tabs">
+    <div class="mobile-tab active" onclick="mobileSwitch('workbook',this)">Workbook</div>
+    <div class="mobile-tab" onclick="mobileSwitch('inspiration',this)">Inspiration</div>
+    <div class="mobile-tab" onclick="mobileSwitch('journal',this)">Journal</div>
+    <div class="mobile-tab" onclick="mobileSwitch('ultimate',this)">Your Ultimate Relationship</div>
+  </div>
+  <div id="mobile-wb-subnav" class="visible">
+    <div class="mobile-wb-tab active" onclick="mobileWbSwitch('foundation',this)">1. Foundation and Vision</div>
+    <div class="mobile-wb-tab" onclick="mobileWbSwitch('where',this)">2. Where Are You Now?</div>
+    <div class="mobile-wb-tab" onclick="mobileWbSwitch('vision',this)">3. Your Vision</div>
+  </div>
+</div>
+
 <!-- MAIN LAYOUT -->
 <div id="main">
 
@@ -2521,6 +2651,24 @@ function switchMainArea(area, navItem) {
   if (wbContent) wbContent.scrollTop = 0;
   const content = document.getElementById('area-' + area);
   if (content) content.scrollTop = 0;
+}
+
+// ── MOBILE NAV ──
+function mobileSwitch(area, tab) {
+  switchMainArea(area, document.getElementById('mnav-' + area));
+  document.querySelectorAll('.mobile-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const wbSub = document.getElementById('mobile-wb-subnav');
+  if (wbSub) wbSub.classList.toggle('visible', area === 'workbook');
+}
+function mobileWbSwitch(section, tab) {
+  switchWbSection(section, document.querySelector('.wb-nav-item'));
+  document.querySelectorAll('.mobile-wb-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  // sync desktop sidebar
+  document.querySelectorAll('.wb-nav-item').forEach((n,i) => {
+    n.classList.toggle('active', ['foundation','where','vision'][i] === section);
+  });
 }
 
 // Legacy switchArea alias
