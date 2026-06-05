@@ -27,7 +27,7 @@
     --font-editorial: Georgia, 'Times New Roman', serif;
   }
 
-  html, body { height: 100%; }
+  html, body { height: 100%; overflow: hidden; }
 
   body {
     background: var(--bg);
@@ -92,6 +92,7 @@
   /* ─── MAIN ─── */
   #main {
     flex: 1;
+    min-height: 0;
     display: flex;
     overflow: hidden;
   }
@@ -156,7 +157,9 @@
 
   #wb-content {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 80px 72px;
   }
 
@@ -171,7 +174,9 @@
   #area-inspiration,
   #area-journal {
     flex-direction: column;
+    min-height: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 80px 0;
   }
 
@@ -805,7 +810,7 @@
     --border-focus: rgba(163,144,93,0.7);
   }
 
-  html, body { height: 100%; }
+  html, body { height: 100%; overflow: hidden; }
 
   body {
     background: var(--bg);
@@ -815,6 +820,7 @@
     line-height: 1.8;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   /* ── TOP NAV ── */
@@ -863,6 +869,7 @@
   /* ── MAIN LAYOUT ── */
   #main {
     flex: 1;
+    min-height: 0;
     display: flex;
     overflow: hidden;
   }
@@ -932,7 +939,9 @@
 
   #wb-content {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 48px 52px;
   }
 
