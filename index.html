@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Love and Passion — Ultimate Relationship</title>
+<title>Love and Passion - Ultimate Relationship</title>
 <style>
   @font-face { font-family: 'SuisseIntl'; src: url('SuisseIntl-Light.otf') format('opentype'); font-weight: 300; font-style: normal; }
   @font-face { font-family: 'SuisseIntl'; src: url('SuisseIntl-LightItalic.otf') format('opentype'); font-weight: 300; font-style: italic; }
@@ -880,49 +880,67 @@
 
   /* ── UNIFIED SIDEBAR ── */
   #main-sidebar {
-    width: 220px;
+    width: 260px;
     flex-shrink: 0;
-    background: #FDFAF5;
-    border-right: 1px solid rgba(163,144,93,0.2);
+    background: #FFFFFF;
+    border-right: 1px solid rgba(163,144,93,0.28);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    padding: 36px 0 36px;
+    height: 100vh;
   }
   #sidebar-brand {
-    padding: 0 24px 32px;
-    border-bottom: 1px solid rgba(163,144,93,0.15);
-    margin-bottom: 24px;
+    padding: 28px 24px 24px;
+    border-bottom: 1px solid rgba(163,144,93,0.2);
+    flex-shrink: 0;
   }
-  #sidebar-nav { flex: 1; }
+  #sidebar-nav {
+    flex: 1;
+    padding: 20px 0 16px;
+  }
   .main-nav-item {
     font-family: 'SuisseIntl', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: #9B8E80;
-    padding: 12px 24px;
+    color: #7A6F65;
+    padding: 13px 24px;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.15s, background 0.15s;
     border-left: 3px solid transparent;
+    user-select: none;
   }
-  .main-nav-item:hover { color: #1A1612; }
-  .main-nav-item.active { color: #C84B31; border-left-color: #C84B31; }
+  .main-nav-item:hover { color: #1A1612; background: rgba(26,22,18,0.03); }
+  .main-nav-item.active { color: #1A1612; }
   .wb-subnav { display: block; }
   .wb-nav-item {
     font-family: 'SuisseIntl', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    color: #9B8E80;
-    padding: 9px 24px 9px 34px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgba(74,69,64,0.55);
+    padding: 10px 24px 10px 40px;
     cursor: pointer;
-    transition: color 0.2s;
-    line-height: 1.4;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1.5;
     border-left: 3px solid transparent;
+    user-select: none;
   }
-  .wb-nav-item:hover { color: #1A1612; }
-  .wb-nav-item.active { color: #C84B31; border-left-color: #C84B31; font-weight: 500; }
+  .wb-nav-item:hover { color: #1A1612; background: rgba(26,22,18,0.03); }
+  .wb-nav-item.active {
+    color: #C84B31;
+    font-weight: 700;
+    border-left-color: #C84B31;
+    background: rgba(200,75,49,0.06);
+    padding-left: 37px;
+  }
+  .nav-section-divider {
+    height: 1px;
+    background: rgba(163,144,93,0.22);
+    margin: 10px 24px;
+  }
   #content-wrap {
     flex: 1;
     min-height: 0;
@@ -1816,6 +1834,8 @@
 
       </div>
 
+      <div class="nav-section-divider"></div>
+
       <!-- Inspiration -->
       <div class="main-nav-item" id="mnav-inspiration" onclick="switchMainArea('inspiration', this)">
         <span class="main-nav-label">Inspiration</span>
@@ -1832,9 +1852,9 @@
       </div>
     </nav>
 
-    <div style="margin-top:auto;padding:24px 20px 0;">
-      <div id="wb-progress" style="display:none"><div id="wb-progress-bar" style="width:25%"></div></div>
-      <div id="wb-progress-label" style="display:none">Section 1 of 4</div>
+    <div style="margin-top:auto;padding:20px 24px 28px;border-top:1px solid rgba(163,144,93,0.2);">
+      <div id="wb-progress"><div id="wb-progress-bar" style="width:25%"></div></div>
+      <div id="wb-progress-label">Section 1 of 3</div>
     </div>
   </div>
 
@@ -1847,7 +1867,7 @@
   <div id="area-workbook" class="area active">
     <div id="wb-content">
 
-      <!-- Section Banner — updates on nav click -->
+      <!-- Section Banner - updates on nav click -->
       <div id="wb-section-banner">
         <span id="wb-banner-num">Section 01</span>
         <div id="wb-banner-name">Foundation and Vision</div>
@@ -1891,7 +1911,7 @@
             Love resurrects me,<br>
             And frees me
           </div>
-          <div class="poem-attr">— Sage Robbins</div>
+          <div class="poem-attr">- Sage Robbins</div>
         </div>
 
         <hr class="divider">
@@ -1900,8 +1920,8 @@
         <span class="eyebrow">Your Intention</span>
         <h2 class="section-title" style="font-size:22px; margin-bottom:16px;">Your Outcome for the Weekend</h2>
         <div class="field-block">
-          <label class="field-label" for="outcome-field">What is your outcome for this weekend — and why is it a must for you?</label>
-          <textarea id="outcome-field" placeholder="Write it here…" oninput="autoExpand(this); saveLS('outcome', this.value)"></textarea>
+          <label class="field-label" for="outcome-field">What is your outcome for this weekend - and why is it a must for you?</label>
+          <textarea id="outcome-field" placeholder="Write it here..." oninput="autoExpand(this); saveLS('outcome', this.value)"></textarea>
         </div>
 
         <hr class="divider">
@@ -1909,28 +1929,28 @@
         <!-- 1c. Seasons -->
         <span class="eyebrow">Tony Robbins</span>
         <h2 class="section-title" style="font-size:22px; margin-bottom:8px;">The Seasons of Relationship</h2>
-        <p class="body-text" style="margin-bottom:20px;">Every relationship moves through seasons. The wisdom isn't avoiding them — it's learning to navigate each one.</p>
+        <p class="body-text" style="margin-bottom:20px;">Every relationship moves through seasons. The wisdom isn't avoiding them - it's learning to navigate each one.</p>
 
         <div class="seasons-grid">
           <div class="season-card">
             <span class="season-icon">🌱</span>
             <span class="season-name">Spring</span>
-            <p class="season-text">Springtime in the beginning — is it hard or easy to grow? Incredibly easy. If you start in springtime, you think you're a genius. Everything comes effortlessly, like bam — springtime. Growth happens almost without effort.</p>
+            <p class="season-text">Springtime in the beginning - is it hard or easy to grow? Incredibly easy. If you start in springtime, you think you're a genius. Everything comes effortlessly, like bam - springtime. Growth happens almost without effort.</p>
           </div>
           <div class="season-card">
             <span class="season-icon">☀️</span>
-            <span class="season-name">Summer — Testing Time</span>
-            <p class="season-text">What always follows spring is a testing time. Summer is hot, it's a challenge. All of a sudden the relationship doesn't feel effortless anymore. You get tested, and some plants don't make it — they don't get enough nurturing, enough support.</p>
+            <span class="season-name">Summer - Testing Time</span>
+            <p class="season-text">What always follows spring is a testing time. Summer is hot, it's a challenge. All of a sudden the relationship doesn't feel effortless anymore. You get tested, and some plants don't make it - they don't get enough nurturing, enough support.</p>
           </div>
           <div class="season-card">
             <span class="season-icon">🍂</span>
             <span class="season-name">Fall</span>
-            <p class="season-text">If you make it through the testing time of summer, the universe seems to give us this cool season called fall — a reaping time where all of a sudden everything has the most magnificent colors, where everything is easy, fruit is available. It's all there.</p>
+            <p class="season-text">If you make it through the testing time of summer, the universe seems to give us this cool season called fall - a reaping time where all of a sudden everything has the most magnificent colors, where everything is easy, fruit is available. It's all there.</p>
           </div>
           <div class="season-card">
             <span class="season-icon">❄️</span>
             <span class="season-name">Winter</span>
-            <p class="season-text">Winter is what makes us stronger. Winter is what bonds us deepest in our relationships — those times where we came together when everything else looked like it was falling apart. It bonded us. Winter is where you learn to build a great fire and be close to the one you love.</p>
+            <p class="season-text">Winter is what makes us stronger. Winter is what bonds us deepest in our relationships - those times where we came together when everything else looked like it was falling apart. It bonded us. Winter is where you learn to build a great fire and be close to the one you love.</p>
           </div>
         </div>
 
@@ -1941,10 +1961,10 @@
         <h2 class="section-title" style="font-size:22px; margin-bottom:16px;">The Generous Lover</h2>
 
         <div class="generous-block">
-          <p>If there's a theme of this program that will get you through all the seasons, it's you deciding that you are the source of the love in your relationship. As long as you're trying to get it from somebody, you're operating out of scarcity — and scarcity never feels good. Doesn't feel good to you, doesn't feel good to the other.</p>
+          <p>If there's a theme of this program that will get you through all the seasons, it's you deciding that you are the source of the love in your relationship. As long as you're trying to get it from somebody, you're operating out of scarcity - and scarcity never feels good. Doesn't feel good to you, doesn't feel good to the other.</p>
           <p>Our theme for the whole week is to be a generous lover. What would a totally generous lover do for the one that they adore, for their beloved? What would they do?</p>
-          <p>In the beginning, almost everybody's a generous lover. But somewhere between seven hours and 70 years, the rules change. If you're a generous lover, the whole game changes. What if that's all you did — you just decided the love that I'm going to experience is the love that I'm giving?</p>
-          <p>If you're sincerely generous in your love of this person, willing to give it openly and evenly, not measuring what you're getting in return — it'll change everything. That's the first theme we're going to carry all week.</p>
+          <p>In the beginning, almost everybody's a generous lover. But somewhere between seven hours and 70 years, the rules change. If you're a generous lover, the whole game changes. What if that's all you did - you just decided the love that I'm going to experience is the love that I'm giving?</p>
+          <p>If you're sincerely generous in your love of this person, willing to give it openly and evenly, not measuring what you're getting in return - it'll change everything. That's the first theme we're going to carry all week.</p>
         </div>
 
       </div><!-- /wb-foundation -->
@@ -1963,7 +1983,7 @@
           </div>
           <div class="position-card" id="pos-2" onclick="selectPosition(2)">
             <span class="position-num">Position 02</span>
-            <div class="position-text">Deep love — aching for more passion</div>
+            <div class="position-text">Deep love - aching for more passion</div>
           </div>
           <div class="position-card" id="pos-3" onclick="selectPosition(3)">
             <span class="position-num">Position 03</span>
@@ -1971,7 +1991,7 @@
           </div>
           <div class="position-card" id="pos-4" onclick="selectPosition(4)">
             <span class="position-num">Position 04</span>
-            <div class="position-text">In it — planning your escape</div>
+            <div class="position-text">In it - planning your escape</div>
           </div>
           <div class="position-card" id="pos-5" onclick="selectPosition(5)">
             <span class="position-num">Position 05</span>
@@ -1979,7 +1999,7 @@
           </div>
           <div class="position-card" id="pos-6" onclick="selectPosition(6)">
             <span class="position-num">Position 06</span>
-            <div class="position-text">Not in one — and ready</div>
+            <div class="position-text">Not in one - and ready</div>
           </div>
         </div>
 
@@ -1994,10 +2014,10 @@
         <h1 class="section-title">Your Vision for the Ultimate Relationship</h1>
         <hr class="divider">
 
-        <!-- Tony AI — above questions -->
+        <!-- Tony AI - above questions -->
         <div class="tony-ai-card">
           <span class="eyebrow">✦ Tony AI</span>
-          <p class="body-text">Know what you feel but can't say it? Tony can help you find the exact language — then you write it yourself.</p>
+          <p class="body-text">Know what you feel but can't say it? Tony can help you find the exact language - then you write it yourself.</p>
           <button class="btn-primary" onclick="openTonyAI()">Help me put this into words →</button>
         </div>
 
@@ -2005,24 +2025,24 @@
         <div class="vision-question-block">
           <span class="vision-q-number">01</span>
           <p class="vision-q-text">Describe it. What's this relationship all about? Who will it inspire? What will you do together? What will you share? What will you enjoy?</p>
-          <span class="vision-attribution">— Tony Robbins</span>
-          <textarea id="v1" placeholder="Write here…" oninput="autoExpand(this); saveLS('v1', this.value); updatePayoff()"></textarea>
+          <span class="vision-attribution">- Tony Robbins</span>
+          <textarea id="v1" placeholder="Write here..." oninput="autoExpand(this); saveLS('v1', this.value); updatePayoff()"></textarea>
         </div>
 
         <!-- Question 2 -->
         <div class="vision-question-block">
           <span class="vision-q-number">02</span>
           <p class="vision-q-text">And then if you dare to be honest about why that vision has not yet been realized and what you can do to change it.</p>
-          <span class="vision-attribution">— Tony Robbins</span>
-          <textarea id="v2" placeholder="Write here…" oninput="autoExpand(this); saveLS('v2', this.value); updatePayoff()"></textarea>
+          <span class="vision-attribution">- Tony Robbins</span>
+          <textarea id="v2" placeholder="Write here..." oninput="autoExpand(this); saveLS('v2', this.value); updatePayoff()"></textarea>
         </div>
 
         <!-- Question 3 -->
         <div class="vision-question-block">
           <span class="vision-q-number">03</span>
           <p class="vision-q-text">What's most important to you in this relationship? What do you want to bring to it? Who are you going to bring to this relationship?</p>
-          <span class="vision-attribution">— Tony Robbins</span>
-          <textarea id="v3" placeholder="Write here…" oninput="autoExpand(this); saveLS('v3', this.value); updatePayoff()"></textarea>
+          <span class="vision-attribution">- Tony Robbins</span>
+          <textarea id="v3" placeholder="Write here..." oninput="autoExpand(this); saveLS('v3', this.value); updatePayoff()"></textarea>
         </div>
 
         <!-- Vision Payoff -->
@@ -2038,7 +2058,7 @@
           <span class="eyebrow">For Your Partner</span>
           <h2 class="section-title" style="font-size:22px; margin-bottom:16px;">Love Note to Your Beloved</h2>
           <p class="body-text" style="margin-bottom:16px;">What do you want your beloved to know tonight?</p>
-          <textarea id="beloved" placeholder="Write here…" oninput="autoExpand(this); saveLS('beloved', this.value)"></textarea>
+          <textarea id="beloved" placeholder="Write here..." oninput="autoExpand(this); saveLS('beloved', this.value)"></textarea>
           <div class="btn-row">
             <button class="btn-primary" onclick="alert('In the full experience, sends via text, email, or a saved card.')">Send it tonight →</button>
             <button class="btn-secondary">Keep it private</button>
@@ -2069,7 +2089,7 @@
     <!-- Sub-nav -->
     <div id="insp-subnav">
       <button class="insp-tab active" onclick="switchInsp('insp-quotes', this)">Quotes</button>
-      <button class="insp-tab" onclick="switchInsp('insp-poem', this)">Sage’s Poem</button>
+      <button class="insp-tab" onclick="switchInsp('insp-poem', this)">Sage's Poem</button>
       <button class="insp-tab" onclick="switchInsp('insp-sparks', this)">Date Night Sparks</button>
       <button class="insp-tab" onclick="switchInsp('insp-challenge', this)">Generous Lover Challenge</button>
     </div>
@@ -2079,111 +2099,124 @@
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
-          <div class="quote-text">Love opens me,<br>It calls me,<br>Love reminds me,<br>It humbles me,<br>Love consumes me,<br>It ignites me…</div>
-          <div class="quote-attr">— Sage Robbins</div>
+          <div class="quote-text">Love opens me,<br>It calls me,<br>Love reminds me,<br>It humbles me,<br>Love consumes me,<br>It ignites me...</div>
+          <div class="quote-attr">- Sage Robbins</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
           <div class="quote-text">Love is the oxygen of life.</div>
-          <div class="quote-attr">— Tony Robbins</div>
+          <div class="quote-attr">- Tony Robbins</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
-          <div class="quote-text">Do what you did in the beginning of a relationship and there won’t be an end.</div>
-          <div class="quote-attr">— Tony Robbins</div>
+          <div class="quote-text">Do what you did in the beginning of a relationship and there won't be an end.</div>
+          <div class="quote-attr">- Tony Robbins</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
-          <div class="quote-text">Love never dies a natural death. It dies because we don’t know how to replenish its source. It dies of blindness, and errors and betrayals.</div>
-          <div class="quote-attr">— Anaïs Nin</div>
+          <div class="quote-text">Love never dies a natural death. It dies because we don't know how to replenish its source. It dies of blindness, and errors and betrayals.</div>
+          <div class="quote-attr">- Anaïs Nin</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
           <div class="quote-text">Love is the whole thing. We are only pieces.</div>
-          <div class="quote-attr">— Rumi</div>
+          <div class="quote-attr">- Rumi</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
           <div class="quote-text">To love another person is to see the face of God.</div>
-          <div class="quote-attr">— Victor Hugo, Les Misérables</div>
+          <div class="quote-attr">- Victor Hugo, Les Misérables</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=800&fit=crop&crop=faces')">
         <div class="quote-card-inner">
-          <div class="quote-text">If you are going to fight, do it naked, while holding hands. It’s awfully hard to be mad at someone when you are both naked!</div>
-          <div class="quote-attr">— Father Pat, Catholic Priest</div>
+          <div class="quote-text">If you are going to fight, do it naked, while holding hands. It's awfully hard to be mad at someone when you are both naked!</div>
+          <div class="quote-attr">- Father Pat, Catholic Priest</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800')">
         <div class="quote-card-inner">
-          <div class="quote-text">Unless it’s mad, passionate, extraordinary love, it’s a waste of your time. There are too many mediocre things in life. Love shouldn’t be one of them.</div>
-          <div class="quote-attr">— Dream for an Insomniac</div>
+          <div class="quote-text">Unless it's mad, passionate, extraordinary love, it's a waste of your time. There are too many mediocre things in life. Love shouldn't be one of them.</div>
+          <div class="quote-attr">- Dream for an Insomniac</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800')">
         <div class="quote-card-inner">
           <div class="quote-text">We are all born for love. It is the principle of existence, and its only end.</div>
-          <div class="quote-attr">— Benjamin Disraeli</div>
+          <div class="quote-attr">- Benjamin Disraeli</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800')">
         <div class="quote-card-inner">
           <div class="quote-text">Where there is love, there is life.</div>
-          <div class="quote-attr">— Mahatma Gandhi</div>
+          <div class="quote-attr">- Mahatma Gandhi</div>
         </div>
       </div>
 
       <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=800')">
         <div class="quote-card-inner">
-          <div class="quote-text">The subject tonight is love — and for tomorrow night as well. As a matter of fact, I know of no better topic for us to discuss until we all die.</div>
-          <div class="quote-attr">— Hafiz</div>
+          <div class="quote-text">The subject tonight is love - and for tomorrow night as well. As a matter of fact, I know of no better topic for us to discuss until we all die.</div>
+          <div class="quote-attr">- Hafiz</div>
         </div>
       </div>
 
     </div><!-- /insp-quotes -->
 
-    <!-- Section: Sage’s Poem -->
+    <!-- Section: Sage's Poem -->
     <div id="insp-poem" class="insp-section">
 
-      <span class="eyebrow">Sage Robbins</span>
-      <div class="poem-block">
-        <div class="poem-text">
-          Love opens me,<br>
-          It calls me,<br>
-          Love reminds me,<br>
-          It humbles me,<br>
-          Love consumes me,<br>
-          It ignites me,<br>
-          Love stirs me,<br>
-          It awakens me,<br>
-          Love connects me,<br>
-          It flattens me,<br>
-          Love lifts me,<br>
-          It changes me,<br>
-          Love resurrects me,<br>
-          And frees me
+      <!-- Full-bleed hero image -->
+      <div style="
+        width: 100%;
+        min-height: 560px;
+        background-image: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1200&q=85');
+        background-size: cover;
+        background-position: center 30%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+      ">
+        <!-- Dark gradient overlay -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 60%, rgba(0,0,0,0.82) 100%);"></div>
+        <!-- Poem text over image -->
+        <div style="position:relative;z-index:2;text-align:center;padding:80px 48px;max-width:600px;">
+          <p style="font-family:'SuisseIntl',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#A3905D;margin-bottom:36px;">Sage Robbins</p>
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:26px;line-height:2;color:#FFFFFF;">
+            Love opens me,<br>It calls me,<br>
+            Love reminds me,<br>It humbles me,<br>
+            Love consumes me,<br>It ignites me,<br>
+            Love stirs me,<br>It awakens me,<br>
+            Love connects me,<br>It flattens me,<br>
+            Love lifts me,<br>It changes me,<br>
+            Love resurrects me,<br>And frees me
+          </div>
+          <p style="font-family:'SuisseIntl',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#A3905D;margin-top:40px;">— Sage Robbins</p>
         </div>
-        <div class="poem-attr">— Sage Robbins</div>
       </div>
 
-      <p class="sage-poem-prose" style="margin-top:40px;">We all love in our own perfectly imperfect way, being called home to our true nature, beyond the masks, laying each one down in the name of unconditional love, she burns the parts of ourself that are no longer needed, cracking us open to our true nature which is love itself, caressing us, destroying us, showing us what’s most beautiful in ourselves and others.</p>
-      <p class="sage-poem-prose">There she stands, stripped down, naked in love with life itself, and all it offers. Finding grace through the grit, heaven in the hell, and joy in the despair. Her heart cracked open by the pain and beauty of it all…</p>
-      <p class="sage-poem-prose">Each breath blesses us with another opportunity to do it all again, to touch life more intimately than the moment before. We close down, we open, we cry, we laugh, it all fits.</p>
-      <p class="sage-poem-prose">This divine reality we call our lives.</p>
+      <!-- Sage's prose, on cream background -->
+      <div style="padding:64px 72px;max-width:680px;margin:0 auto;">
+        <p style="font-family:Georgia,serif;font-style:italic;font-size:18px;line-height:1.9;color:#1A1612;margin-bottom:28px;">We all love in our own perfectly imperfect way, being called home to our true nature, beyond the masks, laying each one down in the name of unconditional love, she burns the parts of ourself that are no longer needed, cracking us open to our true nature which is love itself, caressing us, destroying us, showing us what’s most beautiful in ourselves and others.</p>
+        <p style="font-family:Georgia,serif;font-style:italic;font-size:18px;line-height:1.9;color:#1A1612;margin-bottom:28px;">There she stands, stripped down, naked in love with life itself, and all it offers. Finding grace through the grit, heaven in the hell, and joy in the despair. Her heart cracked open by the pain and beauty of it all…</p>
+        <p style="font-family:Georgia,serif;font-style:italic;font-size:18px;line-height:1.9;color:#1A1612;margin-bottom:28px;">Each breath blesses us with another opportunity to do it all again, to touch life more intimately than the moment before. We close down, we open, we cry, we laugh, it all fits.</p>
+        <p style="font-family:Georgia,serif;font-style:italic;font-size:18px;line-height:1.9;color:#1A1612;">This divine reality we call our lives.</p>
+      </div>
 
     </div><!-- /insp-poem -->
 
@@ -2194,11 +2227,11 @@
       <div class="sparks-grid">
         <div class="spark-card">
           <span class="spark-num">01</span>
-          <span class="spark-text">Ask your partner which season they feel you’re in — and listen without defending.</span>
+          <span class="spark-text">Ask your partner which season they feel you're in - and listen without defending.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">02</span>
-          <span class="spark-text">Read Sage’s poem to each other. Out loud.</span>
+          <span class="spark-text">Read Sage's poem to each other. Out loud.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">03</span>
@@ -2206,7 +2239,7 @@
         </div>
         <div class="spark-card">
           <span class="spark-num">04</span>
-          <span class="spark-text">Ask: “What do I do that makes you feel most loved?” Then just listen.</span>
+          <span class="spark-text">Ask: "What do I do that makes you feel most loved?" Then just listen.</span>
         </div>
         <div class="spark-card">
           <span class="spark-num">05</span>
@@ -2223,11 +2256,11 @@
         <span class="eyebrow">The Theme of the Weekend</span>
         <p class="challenge-title">The Generous Lover</p>
         <div class="generous-block" style="margin: 16px 0 0;">
-          <p>If there’s a theme of this program that will get you through all the seasons, it’s you deciding that you are the source of the love in your relationship. As long as you’re trying to get it from somebody, you’re operating out of scarcity — and scarcity never feels good.</p>
-          <p>Our theme for the whole week is to be a generous lover. What would a totally generous lover do for the one that they adore, for their beloved? What if that’s all you did — you just decided the love that I’m going to experience is the love that I’m giving?</p>
-          <p>If you’re sincerely generous in your love of this person, willing to give it openly and evenly, not measuring what you’re getting in return — it’ll change everything.</p>
+          <p>If there's a theme of this program that will get you through all the seasons, it's you deciding that you are the source of the love in your relationship. As long as you're trying to get it from somebody, you're operating out of scarcity - and scarcity never feels good.</p>
+          <p>Our theme for the whole week is to be a generous lover. What would a totally generous lover do for the one that they adore, for their beloved? What if that's all you did - you just decided the love that I'm going to experience is the love that I'm giving?</p>
+          <p>If you're sincerely generous in your love of this person, willing to give it openly and evenly, not measuring what you're getting in return - it'll change everything.</p>
         </div>
-        <p class="challenge-sub">This week’s challenge: Give love without measuring what you receive in return.</p>
+        <p class="challenge-sub">This week's challenge: Give love without measuring what you receive in return.</p>
       </div>
 
     </div><!-- /insp-challenge -->
@@ -2272,7 +2305,7 @@
     <div class="close-section">
       <span class="close-ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
       <p class="close-main">Tonight you wrote what you want.</p>
-      <p class="close-body">Day 2 — Saturday, 10 AM — the patterns and seasons that shape every relationship. Stay close to the one you love tonight.</p>
+      <p class="close-body">Day 2 - Saturday, 10 AM - the patterns and seasons that shape every relationship. Stay close to the one you love tonight.</p>
       <p class="close-small">Day 2 · Patterns and Seasons of Relationships · Saturday, September 26 · 10:00 AM</p>
     </div>
 
@@ -2437,7 +2470,7 @@ function escapeHtml(str) {
 
 // ── TONY AI ──
 function openTonyAI() {
-  alert("Tony AI opens here.\n\nYou describe what you're feeling — the image, the sense of it, what you can't quite name — and Tony helps you find the language. Then you write it yourself.\n\nContained to this moment.");
+  alert("Tony AI opens here.\n\nYou describe what you're feeling - the image, the sense of it, what you can't quite name - and Tony helps you find the language. Then you write it yourself.\n\nContained to this moment.");
 }
 
 // ── JOURNAL ──
