@@ -11,6 +11,787 @@
   @font-face { font-family: 'SuisseIntl'; src: url('SuisseIntl-Medium.otf') format('opentype'); font-weight: 500; font-style: normal; }
   @font-face { font-family: 'SuisseIntl'; src: url('SuisseIntl-SemiBold.otf') format('opentype'); font-weight: 600; font-style: normal; }
 
+  /* ─── RESET ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FDFAF5;
+    --surface: #FFFFFF;
+    --text: #1A1612;
+    --secondary: #6B6259;
+    --red: #C84B31;
+    --gold: #A3905D;
+    --border: rgba(163,144,93,0.12);
+    --border-focus: rgba(163,144,93,0.55);
+    --font-ui: 'SuisseIntl', -apple-system, Helvetica, Arial, sans-serif;
+    --font-editorial: Georgia, 'Times New Roman', serif;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.9;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ─── TOP NAV ─── */
+  #top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+    height: 68px;
+    flex-shrink: 0;
+  }
+
+  #brand {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.2px;
+  }
+
+  #top-tabs {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .top-tab {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    user-select: none;
+  }
+
+  .top-tab:hover { color: var(--text); }
+  .top-tab.active { color: var(--text); border-bottom-color: var(--red); }
+
+  /* ─── MAIN ─── */
+  #main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .area {
+    display: none;
+    flex: 1;
+    overflow: hidden;
+  }
+  .area.active { display: flex; }
+
+  /* ─── WORKBOOK LAYOUT ─── */
+  #area-workbook { flex-direction: row; }
+
+  #wb-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 52px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wb-nav-item {
+    padding: 14px 28px;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    user-select: none;
+    line-height: 1.6;
+  }
+
+  .wb-nav-item:hover { color: var(--text); }
+  .wb-nav-item.active { color: var(--red); border-left-color: var(--red); }
+
+  #wb-progress {
+    margin: 40px 28px 0;
+    height: 1px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  #wb-progress-bar {
+    height: 100%;
+    background: var(--red);
+    transition: width 0.4s ease;
+  }
+  #wb-progress-label {
+    margin: 8px 28px 0;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(107,98,89,0.5);
+  }
+
+  #wb-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 80px 72px;
+  }
+
+  .wb-inner {
+    max-width: 640px;
+  }
+
+  .wb-section { display: none; }
+  .wb-section.active { display: block; }
+
+  /* ─── STANDALONE AREAS ─── */
+  #area-inspiration,
+  #area-journal {
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 80px 0;
+  }
+
+  .area-inner {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .section-title {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 42px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .body-text {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--secondary);
+  }
+
+  .attribution {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 64px 0;
+  }
+
+  /* ─── LETTER BLOCK ─── */
+  .letter-block {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 0;
+    margin-bottom: 64px;
+  }
+
+  .letter-block p {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--secondary);
+    margin-bottom: 18px;
+  }
+
+  .letter-block p:last-child { margin-bottom: 0; }
+
+  .letter-sign {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--text);
+    margin-top: 32px;
+  }
+
+  /* ─── POEM ─── */
+  .poem-block {
+    padding: 52px 0 64px;
+  }
+
+  .poem-lines {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 2.1;
+    color: var(--text);
+    margin-bottom: 0;
+  }
+
+  .poem-lines span { display: block; }
+
+  /* ─── TEXTAREAS ─── */
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(163,144,93,0.2);
+    outline: none;
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+    padding: 16px 0;
+    min-height: 100px;
+    resize: none;
+    transition: border-color 0.2s;
+    overflow: hidden;
+  }
+
+  textarea:focus { border-bottom-color: var(--border-focus); }
+
+  textarea::placeholder {
+    color: rgba(107,98,89,0.3);
+    font-style: italic;
+  }
+
+  .field-block { margin-bottom: 48px; }
+
+  .field-label {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* ─── SEASON GRID (editorial, not cards) ─── */
+  .seasons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin: 48px 0;
+    border: 1px solid var(--border);
+  }
+
+  .season-card {
+    background: var(--surface);
+    padding: 36px 28px;
+    border: none;
+    border-radius: 0;
+  }
+
+  .season-card:nth-child(1),
+  .season-card:nth-child(2) { border-bottom: 1px solid var(--border); }
+  .season-card:nth-child(1),
+  .season-card:nth-child(3) { border-right: 1px solid var(--border); }
+
+  .season-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .season-name {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .season-text {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--secondary);
+  }
+
+  /* ─── GENEROUS LOVER BLOCK ─── */
+  .generous-block {
+    border-left: 1px solid var(--gold);
+    padding: 0 0 0 28px;
+    margin: 48px 0;
+  }
+
+  .generous-block p {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--secondary);
+    margin-bottom: 18px;
+  }
+
+  .generous-block p:last-child { margin-bottom: 0; }
+
+  /* ─── POSITION CARDS ─── */
+  .positions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin: 48px 0;
+    background: var(--border);
+  }
+
+  .position-card {
+    background: var(--surface);
+    padding: 24px 22px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+    border-radius: 0;
+  }
+
+  .position-card:hover { background: #FDF7F5; }
+
+  .position-card.selected {
+    background: #FDF7F5;
+    box-shadow: inset 2px 0 0 var(--red);
+  }
+
+  .position-num {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .position-text {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  .positions-private {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 11px;
+    color: rgba(107,98,89,0.5);
+    letter-spacing: 1px;
+    margin-top: 16px;
+  }
+
+  /* ─── VISION QUESTIONS ─── */
+  .vision-question-block { margin-bottom: 56px; }
+
+  .vision-q-number {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .vision-q-text {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .vision-attribution {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  /* ─── TONY AI CARD ─── */
+  .tony-ai-card {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0;
+    margin: 48px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tony-ai-card .body-text {
+    font-size: 14px;
+    max-width: 480px;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn-primary {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 0;
+    background: transparent;
+    color: var(--red);
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border: none;
+    border-bottom: 1px solid var(--red);
+    cursor: pointer;
+    padding-bottom: 3px;
+    transition: opacity 0.2s;
+    align-self: flex-start;
+  }
+
+  .btn-primary:hover { opacity: 0.6; }
+
+  .btn-secondary {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 0;
+    background: transparent;
+    color: var(--secondary);
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border: none;
+    border-bottom: 1px solid rgba(107,98,89,0.3);
+    cursor: pointer;
+    padding-bottom: 3px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-secondary:hover { opacity: 0.6; }
+
+  /* ─── VISION PAYOFF ─── */
+  .vision-payoff {
+    border-top: 1px solid var(--border);
+    padding-top: 48px;
+    margin: 48px 0;
+  }
+
+  .vision-payoff-text {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.9;
+    color: var(--text);
+    white-space: pre-wrap;
+  }
+
+  .vision-payoff-empty {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 13px;
+    color: rgba(107,98,89,0.35);
+    font-style: italic;
+  }
+
+  /* ─── LOVE NOTE ─── */
+  .love-note-block { margin: 64px 0; }
+
+  .btn-row {
+    display: flex;
+    gap: 28px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ─── QUOTE CARDS ─── */
+  .quote-card {
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
+    margin-bottom: 2px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  .quote-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%);
+  }
+
+  .quote-card-inner {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    padding: 36px 40px;
+    max-width: 560px;
+  }
+
+  .quote-text {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.65;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  .quote-attr {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(163,144,93,0.9);
+  }
+
+  /* ─── INSPIRATION AREA ─── */
+  .insp-section-title {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 42px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    margin-bottom: 56px;
+  }
+
+  /* ─── DATE NIGHT SPARKS ─── */
+  .sparks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin: 24px 0;
+    background: var(--border);
+  }
+
+  .spark-card {
+    background: var(--surface);
+    padding: 24px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border-radius: 0;
+  }
+
+  .spark-num {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--red);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .spark-text {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--secondary);
+    line-height: 1.7;
+  }
+
+  /* ─── SAGE POEM FULL ─── */
+  .sage-poem-block {
+    padding: 80px 0 64px;
+    border-top: 1px solid var(--border);
+    margin-top: 64px;
+  }
+
+  .sage-poem-lines {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 2.1;
+    color: var(--text);
+    margin-bottom: 52px;
+  }
+
+  .sage-poem-lines span { display: block; }
+
+  .sage-poem-prose {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 2;
+    color: var(--secondary);
+    margin-bottom: 24px;
+    max-width: 560px;
+  }
+
+  /* ─── JOURNAL ─── */
+  .journal-tabs {
+    display: flex;
+    gap: 36px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 52px;
+  }
+
+  .journal-tab {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    cursor: pointer;
+    padding-bottom: 14px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+
+  .journal-tab:hover { color: var(--text); }
+  .journal-tab.active { color: var(--text); border-bottom-color: var(--red); }
+
+  .journal-panel { display: none; }
+  .journal-panel.active { display: block; }
+
+  .add-entry-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--red);
+    padding: 0 0 3px;
+    margin-bottom: 44px;
+    transition: opacity 0.2s;
+  }
+
+  .add-entry-btn:hover { opacity: 0.6; }
+
+  .journal-entry {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+
+  .entry-timestamp {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* ─── CLOSE SECTION ─── */
+  .close-section {
+    padding: 80px 0 64px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 64px;
+  }
+
+  .close-ornament {
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 18px;
+    margin-bottom: 36px;
+    display: block;
+    opacity: 0.7;
+  }
+
+  .close-main {
+    font-family: var(--font-editorial);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--text);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .close-body {
+    font-family: var(--font-ui);
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--secondary);
+    max-width: 420px;
+    margin: 0 auto 20px;
+    line-height: 1.9;
+  }
+
+  .close-small {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(163,144,93,0.6);
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(163,144,93,0.2); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(163,144,93,0.4); }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -1095,6 +1876,38 @@
       <div class="quote-card-inner">
         <div class="quote-text">If you are going to fight, do it naked, while holding hands. It's awfully hard to be mad at someone when you are both naked!</div>
         <div class="quote-attr">— Father Pat, Catholic Priest</div>
+      </div>
+    </div>
+
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800')">
+      <div class="quote-overlay"></div>
+      <div class="quote-inner">
+        <div class="quote-text">Unless it’s mad, passionate, extraordinary love, it’s a waste of your time. There are too many mediocre things in life. Love shouldn’t be one of them.</div>
+        <div class="quote-attr">— Dream for an Insomniac</div>
+      </div>
+    </div>
+
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800')">
+      <div class="quote-overlay"></div>
+      <div class="quote-inner">
+        <div class="quote-text">We are all born for love. It is the principle of existence, and its only end.</div>
+        <div class="quote-attr">— Benjamin Disraeli</div>
+      </div>
+    </div>
+
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800')">
+      <div class="quote-overlay"></div>
+      <div class="quote-inner">
+        <div class="quote-text">Where there is love, there is life.</div>
+        <div class="quote-attr">— Mahatma Gandhi</div>
+      </div>
+    </div>
+
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=800')">
+      <div class="quote-overlay"></div>
+      <div class="quote-inner">
+        <div class="quote-text">The subject tonight is love — and for tomorrow night as well. As a matter of fact, I know of no better topic for us to discuss until we all die.</div>
+        <div class="quote-attr">— Hafiz</div>
       </div>
     </div>
 
