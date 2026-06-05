@@ -1,1098 +1,1206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Love & Passion · Day 1 Companion</title>
-  <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── Tokens ── */
-    :root {
-      --cream:      #F0EAE0;
-      --gold:       #B8895A;
-      --gold-dim:   rgba(184,137,90,0.35);
-      --gold-trace: rgba(184,137,90,0.13);
-      --gold-rule:  rgba(184,137,90,0.28);
-      --gold-src:   rgba(184,137,90,0.40);
-      --body-text:  rgba(240,234,224,0.50);
-      --body-hi:    rgba(240,234,224,0.92);
-      --bg-warm:    #110E0A;
-      --bg-rose:    #120A0C;
-      --bg-night:   #080B14;
-      --flag-text:  rgba(255,175,70,0.55);
-      --flag-bg:    rgba(255,175,70,0.07);
-      --flag-border:rgba(255,175,70,0.17);
-    }
-
-    /* ── Body / background ── */
-    html, body {
-      height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background-color: var(--bg-warm);
-      color: var(--cream);
-      overflow: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      transition: background-color 2.5s ease;
-    }
-
-    body.bg-warm  { background-color: var(--bg-warm); }
-    body.bg-rose  { background-color: var(--bg-rose); }
-    body.bg-night { background-color: var(--bg-night); }
-
-    /* ── Progress bar ── */
-    #progress-track {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: rgba(184,137,90,0.10);
-      z-index: 100;
-    }
-    #progress-fill {
-      height: 100%;
-      background: rgba(184,137,90,0.50);
-      transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
-      width: 0%;
-    }
-
-    /* ── Fixed badges ── */
-    #day-badge {
-      position: fixed;
-      top: 22px; left: 32px;
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(184,137,90,0.38);
-      z-index: 100;
-      pointer-events: none;
-    }
-
-    #section-tag {
-      position: fixed;
-      top: 22px; right: 32px;
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(184,137,90,0.25);
-      z-index: 100;
-      pointer-events: none;
-      max-width: 160px;
-      text-align: right;
-    }
-
-    /* ── Screens ── */
-    .screen {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 72px 36px 96px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1);
-      text-align: center;
-    }
-
-    .screen.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .screen.scrollable {
-      overflow-y: auto;
-      justify-content: flex-start;
-      padding-top: 80px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    /* ── Entrance animation ── */
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .screen.active .a {
-      animation: rise 0.65s cubic-bezier(0.2,0.8,0.3,1) both;
-    }
-
-    .screen.active .a:nth-child(1) { animation-delay: 0.10s; }
-    .screen.active .a:nth-child(2) { animation-delay: 0.20s; }
-    .screen.active .a:nth-child(3) { animation-delay: 0.30s; }
-    .screen.active .a:nth-child(4) { animation-delay: 0.40s; }
-    .screen.active .a:nth-child(5) { animation-delay: 0.50s; }
-    .screen.active .a:nth-child(6) { animation-delay: 0.55s; }
-    .screen.active .a:nth-child(7) { animation-delay: 0.60s; }
-
-    /* ── Typography ── */
-    .eyebrow {
-      font-size: 9px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-
-    .h-splash {
-      font-size: 48px;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--cream);
-      line-height: 1.15;
-      max-width: 520px;
-    }
-
-    .h-main {
-      font-size: 30px;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--cream);
-      line-height: 1.35;
-      max-width: 460px;
-    }
-
-    .h-main.large {
-      font-size: 30px;
-    }
-
-    .body-text {
-      font-size: 15px;
-      line-height: 1.85;
-      font-weight: 300;
-      color: var(--body-text);
-      max-width: 380px;
-      margin-top: 18px;
-    }
-
-    .quote {
-      font-size: 22px;
-      line-height: 1.65;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--cream);
-      max-width: 500px;
-    }
-
-    .prompt {
-      font-size: 20px;
-      line-height: 1.65;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--body-hi);
-      max-width: 500px;
-    }
-
-    .attribution {
-      font-size: 9px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 22px;
-    }
-
-    .source {
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold-src);
-      margin-top: 10px;
-    }
-
-    .rule {
-      width: 36px;
-      height: 1px;
-      background: var(--gold-rule);
-      margin: 28px auto;
-      flex-shrink: 0;
-    }
-
-    /* ── Flag badge ── */
-    .flag {
-      display: inline-block;
-      font-size: 8px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--flag-text);
-      background: var(--flag-bg);
-      border: 1px solid var(--flag-border);
-      border-radius: 4px;
-      padding: 5px 9px;
-      margin-bottom: 18px;
-    }
-
-    /* ── Textarea ── */
-    textarea {
-      width: 100%;
-      max-width: 500px;
-      min-height: 160px;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(184,137,90,0.25);
-      outline: none;
-      resize: none;
-      font-size: 17px;
-      line-height: 1.75;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--cream);
-      padding: 12px 0 16px;
-      transition: border-color 0.3s ease;
-      margin-top: 24px;
-    }
-
-    textarea::placeholder {
-      color: rgba(240,234,224,0.18);
-      font-style: italic;
-    }
-
-    textarea:focus {
-      border-bottom-color: rgba(184,137,90,0.70);
-    }
-
-    /* ── Nav ── */
-    #nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
-      padding-top: 28px;
-      background: linear-gradient(transparent, rgba(8,6,4,0.92) 50%);
-      z-index: 90;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    body.bg-rose #nav {
-      background: linear-gradient(transparent, rgba(10,4,6,0.92) 50%);
-    }
-
-    body.bg-night #nav {
-      background: linear-gradient(transparent, rgba(4,5,10,0.92) 50%);
-    }
-
-    .btn-back, .btn-next {
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding: 11px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      border: 1px solid transparent;
-      background: none;
-      transition: opacity 0.3s ease, transform 0.2s ease;
-    }
-
-    .btn-back {
-      color: var(--gold);
-      border-color: var(--gold-dim);
-    }
-
-    .btn-back:hover {
-      opacity: 0.7;
-    }
-
-    .btn-back.hidden, .btn-next.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .btn-next {
-      color: var(--bg-warm);
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .btn-next:hover {
-      opacity: 0.88;
-    }
-
-    .btn-next:active {
-      transform: scale(0.97);
-    }
-
-    /* ── 6 Positions grid ── */
-    .positions-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      max-width: 440px;
-      width: 100%;
-      margin-top: 28px;
-    }
-
-    .pos-card {
-      background: rgba(240,234,224,0.04);
-      border: 1px solid rgba(184,137,90,0.13);
-      border-radius: 9px;
-      padding: 15px 13px 13px;
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.25s ease, border-color 0.25s ease, transform 0.15s ease;
-    }
-
-    .pos-card:hover {
-      background: rgba(240,234,224,0.07);
-      border-color: rgba(184,137,90,0.28);
-    }
-
-    .pos-card:active {
-      transform: scale(0.97);
-    }
-
-    .pos-card.selected {
-      background: rgba(184,137,90,0.12);
-      border-color: rgba(184,137,90,0.50);
-    }
-
-    .pos-num {
-      font-size: 8px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .pos-text {
-      font-size: 13px;
-      line-height: 1.45;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: rgba(240,234,224,0.82);
-    }
-
-    .privacy-note {
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(184,137,90,0.30);
-      margin-top: 22px;
-    }
-
-    /* ── Vision Payoff ── */
-    .payoff-inner {
-      width: 100%;
-      max-width: 520px;
-      margin-top: 16px;
-    }
-
-    .payoff-header {
-      font-size: 9px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-align: left;
-      margin-bottom: 28px;
-    }
-
-    .payoff-block {
-      text-align: left;
-      padding-bottom: 32px;
-      margin-bottom: 32px;
-      border-bottom: 1px solid rgba(184,137,90,0.10);
-    }
-
-    .payoff-block:last-of-type {
-      border-bottom: none;
-    }
-
-    .payoff-label {
-      font-size: 8px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(184,137,90,0.50);
-      display: block;
-      margin-bottom: 12px;
-    }
-
-    .payoff-text {
-      font-size: 18px;
-      line-height: 1.75;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--cream);
-    }
-
-    .payoff-empty {
-      font-size: 15px;
-      line-height: 1.60;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: rgba(240,234,224,0.18);
-    }
-
-    /* ── Tony AI Card ── */
-    .tony-card {
-      border: 1px solid rgba(184,137,90,0.20);
-      border-radius: 12px;
-      padding: 22px 20px;
-      width: 100%;
-      max-width: 520px;
-      text-align: left;
-      margin-top: 32px;
-      margin-bottom: 60px;
-    }
-
-    .tony-card-eyebrow {
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .tony-card-body {
-      font-size: 14px;
-      line-height: 1.75;
-      font-weight: 300;
-      color: rgba(240,234,224,0.62);
-      margin-bottom: 18px;
-    }
-
-    .tony-card-btn {
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(184,137,90,0.28);
-      border-radius: 4px;
-      padding: 11px 18px;
-      background: none;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .tony-card-btn:hover {
-      background: rgba(184,137,90,0.08);
-    }
-
-    /* ── Love Note screen ── */
-    .love-note-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 22px;
-      flex-wrap: wrap;
-    }
-
-    .btn-send {
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(184,137,90,0.45);
-      border-radius: 4px;
-      padding: 11px 20px;
-      background: none;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .btn-send:hover {
-      background: rgba(184,137,90,0.08);
-    }
-
-    .btn-private {
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--body-text);
-      border: none;
-      padding: 11px 20px;
-      background: none;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .btn-private:hover {
-      color: var(--cream);
-    }
-
-    /* ── Close screen ── */
-    .ornament {
-      font-size: 16px;
-      opacity: 0.3;
-      letter-spacing: 8px;
-      margin-bottom: 36px;
-      color: var(--gold);
-    }
-
-    .close-day {
-      font-size: 9px;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-
-    .close-headline {
-      font-size: 28px;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-      color: var(--cream);
-      max-width: 400px;
-      line-height: 1.35;
-    }
-
-    .next-day {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(184,137,90,0.40);
-      line-height: 1.8;
-      max-width: 320px;
-    }
-
-    /* ── Splash ornament ── */
-    .splash-sub {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(240,234,224,0.30);
-      margin-top: 28px;
-      line-height: 1.9;
-    }
-
-    /* ── Bridge screen ── */
-    .bridge-rule-text {
-      font-size: 13px;
-      line-height: 1.75;
-      font-weight: 300;
-      color: rgba(240,234,224,0.32);
-      max-width: 360px;
-      margin-top: 10px;
-      font-style: italic;
-      font-family: Georgia, 'Times New Roman', serif;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .h-splash { font-size: 36px; }
-      .h-main.large { font-size: 30px; }
-      .h-main { font-size: 24px; }
-      .quote { font-size: 19px; }
-      .prompt { font-size: 17px; }
-      .screen { padding: 64px 28px 88px; }
-      .screen.scrollable { padding: 72px 28px 100px; }
-      .positions-grid {
-        grid-template-columns: 1fr;
-        max-width: 340px;
-      }
-      #day-badge { left: 20px; }
-      #section-tag { right: 20px; }
-    }
-
-    /* ── Scrollbar (minimal) ── */
-    .screen.scrollable::-webkit-scrollbar { width: 2px; }
-    .screen.scrollable::-webkit-scrollbar-track { background: transparent; }
-    .screen.scrollable::-webkit-scrollbar-thumb { background: rgba(184,137,90,0.2); border-radius: 2px; }
-
-    /* ── Alert modal ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: #13110E;
-      border: 1px solid rgba(184,137,90,0.25);
-      border-radius: 14px;
-      padding: 32px 28px;
-      max-width: 360px;
-      width: 90%;
-      text-align: left;
-    }
-    .modal-eyebrow {
-      font-size: 8px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-    .modal-body {
-      font-size: 14px;
-      line-height: 1.75;
-      font-weight: 300;
-      color: rgba(240,234,224,0.70);
-      white-space: pre-line;
-    }
-    .modal-close {
-      margin-top: 22px;
-      font-size: 9px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(184,137,90,0.28);
-      border-radius: 4px;
-      padding: 10px 18px;
-      background: none;
-      cursor: pointer;
-    }
-
-    /* ── Send modal ── */
-    .send-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
-    .send-overlay.open { display: flex; }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love &amp; Passion · Day 1</title>
+<style>
+  :root {
+    --cream: #FDFAF5;
+    --white: #FFFFFF;
+    --ink: #1A1612;
+    --mid: #6B6259;
+    --gold: #A3905D;
+    --gold-light: #C5B99A;
+    --gold-border: rgba(163,144,93,0.2);
+    --gold-fill: rgba(163,144,93,0.08);
+    --nav-w: 200px;
+    --radius: 4px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* ───── LAYOUT ───── */
+  .app {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ───── SIDEBAR ───── */
+  .sidebar {
+    width: var(--nav-w);
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: var(--white);
+    border-right: 1px solid var(--gold-border);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0 32px;
+    z-index: 100;
+  }
+
+  .sidebar-brand {
+    padding: 0 24px 32px;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .sidebar-brand .eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-brand .day-label {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .nav-list {
+    list-style: none;
+    padding: 24px 0;
+    flex: 1;
+  }
+
+  .nav-list li { position: relative; }
+
+  .nav-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    border-radius: 0 2px 2px 0;
+    transition: height 0.2s;
+  }
+
+  .nav-btn.active {
+    color: var(--gold);
+  }
+
+  .nav-btn.active::before {
+    height: 24px;
+  }
+
+  .nav-btn:hover { color: var(--gold); }
+
+  .nav-num {
+    display: inline-block;
+    width: 16px;
+    opacity: 0.5;
+    font-size: 9px;
+    vertical-align: middle;
+    margin-right: 2px;
+  }
+
+  .sidebar-footer {
+    padding: 0 24px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+
+  /* ───── MAIN CONTENT ───── */
+  .main {
+    margin-left: var(--nav-w);
+    flex: 1;
+    max-width: calc(720px + var(--nav-w));
+  }
+
+  .section {
+    display: none;
+    padding: 48px 40px 80px;
+    max-width: 720px;
+  }
+
+  .section.active { display: block; }
+
+  /* ───── TOP NAV MOBILE ───── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--gold-border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-nav-inner {
+    display: flex;
+    min-width: max-content;
+    padding: 0 16px;
+  }
+
+  .mobile-nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .mobile-nav-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ───── EYEBROW ───── */
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  /* ───── SECTION HEADER ───── */
+  .section-header {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .section-header h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    font-weight: normal;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  /* ───── QUOTE CARDS (photo behind) ───── */
+  .quote-card {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.02);
+    transition: transform 8s ease;
+  }
+
+  .quote-card:hover .quote-card-bg { transform: scale(1.06); }
+
+  .quote-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .quote-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 560px;
+  }
+
+  .quote-card blockquote {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.55;
+    color: #FFFFFF;
+    margin: 0 0 16px;
+  }
+
+  .quote-card cite {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(163,144,93,0.9);
+    font-style: normal;
+    display: block;
+  }
+
+  /* ───── SEASONS CARDS ───── */
+  .seasons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .season-card {
+    background: var(--white);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .season-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .season-name {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .season-body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  /* ───── CONTENT BLOCKS ───── */
+  .content-block {
+    margin-bottom: 40px;
+  }
+
+  .content-block h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: normal;
+    margin-bottom: 16px;
+  }
+
+  .body-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--mid);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--gold-border);
+    margin: 40px 0;
+  }
+
+  /* ───── POSITION GRID ───── */
+  .position-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .position-card {
+    background: var(--white);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    text-align: left;
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+  }
+
+  .position-card:hover {
+    border-color: var(--gold);
+    background: var(--gold-fill);
+  }
+
+  .position-card.selected {
+    border-color: var(--gold);
+    background: var(--gold-fill);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  .position-card.selected .pos-num { color: var(--gold); }
+
+  .pos-num {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 6px;
+    transition: color 0.2s;
+  }
+
+  .pos-label {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .position-card.selected .pos-label { color: var(--ink); }
+
+  .pos-check {
+    display: none;
+    float: right;
+    color: var(--gold);
+    font-size: 13px;
+    margin-left: 8px;
+  }
+  .position-card.selected .pos-check { display: inline; }
+
+  .privacy-note {
+    font-size: 12px;
+    color: var(--mid);
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  /* ───── WRITE-OUT SECTION ───── */
+  .outcome-block {
+    background: var(--white);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    margin-bottom: 40px;
+  }
+
+  .prompt-block {
+    margin-bottom: 40px;
+  }
+
+  .prompt-quote {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .prompt-attr {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--gold-border);
+    border-radius: 0;
+    padding: 12px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    resize: none;
+    outline: none;
+    min-height: 100px;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  textarea::placeholder {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  textarea:focus {
+    border-bottom-color: var(--gold);
+  }
+
+  /* ───── VISION PAYOFF ───── */
+  .vision-payoff {
+    background: var(--white);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-top: 48px;
+  }
+
+  .vision-payoff .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .vision-entry {
+    margin-bottom: 28px;
+  }
+
+  .vision-entry-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .vision-entry-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    white-space: pre-wrap;
+  }
+
+  .vision-entry-empty {
+    font-size: 13px;
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  /* ───── TONY AI CARD ───── */
+  .tony-ai-card {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .tony-ai-card .ai-eyebrow {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .tony-ai-card .ai-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .ai-btn {
+    flex-shrink: 0;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .ai-btn:hover { opacity: 0.85; }
+
+  /* ───── JOURNAL ───── */
+  .journal-entry {
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--gold-border);
+  }
+
+  .journal-entry:last-child {
+    border-bottom: none;
+  }
+
+  .journal-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .journal-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink);
+    white-space: pre-wrap;
+  }
+
+  .journal-empty {
+    font-size: 14px;
+    color: var(--gold-light);
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  /* ───── LOVE NOTE ───── */
+  .love-note-block {
+    background: var(--white);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-top: 48px;
+  }
+
+  .love-note-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .btn-send {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 11px 24px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-send:hover { opacity: 0.85; }
+
+  .btn-ghost {
+    background: none;
+    color: var(--mid);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius);
+    padding: 11px 20px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ───── CLOSE SECTION ───── */
+  .close-block {
+    text-align: center;
+    padding: 56px 0 24px;
+  }
+
+  .close-ornament {
+    font-size: 14px;
+    letter-spacing: 12px;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .close-quote {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.45;
+  }
+
+  .close-body {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .close-day2 {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: block; }
+    .main { margin-left: 0; padding-top: 50px; }
+    .section { padding: 32px 20px 60px; }
+    .seasons-grid { grid-template-columns: 1fr; }
+    .position-grid { grid-template-columns: 1fr; }
+    .quote-card { height: 220px; }
+    .quote-card-content { padding: 24px 24px; }
+    .quote-card blockquote { font-size: 18px; }
+    .tony-ai-card { flex-direction: column; align-items: flex-start; }
+    .love-note-actions { flex-direction: column; }
+    .btn-send, .btn-ghost { width: 100%; text-align: center; }
+  }
+</style>
 </head>
-<body class="bg-warm">
+<body>
 
-  <!-- Progress bar -->
-  <div id="progress-track"><div id="progress-fill"></div></div>
-
-  <!-- Fixed badges -->
-  <div id="day-badge">Day 1</div>
-  <div id="section-tag"></div>
-
-  <!-- ════════════════════════════════
-       S0 · SPLASH
-  ════════════════════════════════ -->
-  <div class="screen active" id="s0" data-bg="bg-warm" data-section="">
-    <div class="a eyebrow">Love &amp; Passion Weekend</div>
-    <h1 class="a h-splash">Foundation<br />&amp; Vision</h1>
-    <p class="a splash-sub">
-      Day 1 · Friday, September 25<br />
-      with Tony &amp; Sage Robbins
-    </p>
+<!-- ── SIDEBAR (desktop) ── -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <span class="eyebrow">Love &amp; Passion Weekend</span>
+    <span class="day-label">Day 1</span>
   </div>
+  <ul class="nav-list">
+    <li>
+      <button class="nav-btn active" data-section="foundation" onclick="showSection('foundation', this)">
+        <span class="nav-num">1</span> Foundation &amp; Vision
+      </button>
+    </li>
+    <li>
+      <button class="nav-btn" data-section="positions" onclick="showSection('positions', this)">
+        <span class="nav-num">2</span> Where Are You Now?
+      </button>
+    </li>
+    <li>
+      <button class="nav-btn" data-section="vision" onclick="showSection('vision', this)">
+        <span class="nav-num">3</span> Your Vision
+      </button>
+    </li>
+    <li>
+      <button class="nav-btn" data-section="journal" onclick="showSection('journal', this)">
+        <span class="nav-num">4</span> Your Journal
+      </button>
+    </li>
+  </ul>
+  <div class="sidebar-footer">Platinum · Tulum 2025</div>
+</aside>
 
-  <!-- ════════════════════════════════
-       S1 · WELCOME
-  ════════════════════════════════ -->
-  <div class="screen" id="s1" data-bg="bg-warm" data-section="Welcome">
-    <div class="a eyebrow">Tonight</div>
-    <h2 class="a h-main">Something<br />brought you<br />here tonight.</h2>
-    <p class="a body-text">
-      This companion holds what the room asks you to capture.
-      When Tony sends you here, you'll be ready.
-      The rest of the time — be in the room.
-    </p>
+<!-- ── MOBILE NAV ── -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-btn active" data-section="foundation" onclick="showSection('foundation', this)">Foundation</button>
+    <button class="mobile-nav-btn" data-section="positions" onclick="showSection('positions', this)">Where Are You?</button>
+    <button class="mobile-nav-btn" data-section="vision" onclick="showSection('vision', this)">Your Vision</button>
+    <button class="mobile-nav-btn" data-section="journal" onclick="showSection('journal', this)">Journal</button>
   </div>
+</nav>
 
-  <!-- ════════════════════════════════
-       S2 · INTENTION  (FLAGGED)
-  ════════════════════════════════ -->
-  <div class="screen" id="s2" data-bg="bg-warm" data-section="Intention">
-    <div class="a eyebrow">Your Outcome</div>
-    <p class="a prompt">What is your outcome for this weekend — and why is it a must for you?</p>
-    <textarea class="a" id="intention-field" placeholder="Write without stopping…" rows="4"></textarea>
-  </div>
+<!-- ── MAIN ── -->
+<main class="main">
 
-  <!-- ════════════════════════════════
-       S3 · BRIDGE — Intro
-  ════════════════════════════════ -->
-  <div class="screen" id="s3" data-bg="bg-warm" data-section="Intro Video · Day 1">
-    <div class="a eyebrow">Intro Video · Day 1</div>
-    <h2 class="a h-main">Tony is about<br />to begin.</h2>
-    <div class="a rule"></div>
-    <p class="a bridge-rule-text">Be in the room.<br />Your companion will be here when he sends you to write.</p>
-  </div>
+  <!-- ════════════════════════════════════════
+       SECTION 1 · FOUNDATION & VISION
+       ════════════════════════════════════════ -->
+  <section id="foundation" class="section active">
 
-  <!-- ════════════════════════════════
-       S4 · QUOTE — Oxygen
-  ════════════════════════════════ -->
-  <div class="screen" id="s4" data-bg="bg-rose" data-section="Intro Video · Day 1">
-    <blockquote class="a quote">
-      "Love is the oxygen of life."
-    </blockquote>
-    <p class="a attribution">— Tony Robbins</p>
-    <div class="a rule"></div>
-    <p class="a source">Stay in the room. More to come.</p>
-  </div>
+    <div class="section-header">
+      <span class="eyebrow">Day 1 · Foundation</span>
+      <h1>Foundation &amp; Vision</h1>
+    </div>
 
-  <!-- ════════════════════════════════
-       S5 · QUOTE — Generous Lover
-  ════════════════════════════════ -->
-  <div class="screen" id="s5" data-bg="bg-rose" data-section="Intro Video · Day 1">
-    <blockquote class="a quote">
-      "What would a totally generous lover do for the one that they adore, for their beloved? What would they do?"
-    </blockquote>
-    <p class="a attribution">— Tony Robbins</p>
-    <div class="a rule"></div>
-    <p class="a source">Stay in the room. More to come.</p>
-  </div>
+    <!-- 1a · Seasons of Relationship -->
+    <div class="content-block">
+      <span class="eyebrow">The Seasons of Relationship</span>
 
-  <!-- ════════════════════════════════
-       S6 · 6 POSITIONS
-  ════════════════════════════════ -->
-  <div class="screen" id="s6" data-bg="bg-rose" data-section="Where Are You Now?">
-    <div class="a eyebrow">Where Are You Now?</div>
-    <h2 class="a h-main" style="font-size:24px;">Tony is asking you to name<br />where you are right now.</h2>
-    <p class="a body-text" style="margin-top:10px;">Tap yours. This is private.</p>
-    <div class="a positions-grid" id="positions-grid">
-      <div class="pos-card" onclick="pickPos(this, 1)">
-        <span class="pos-num">Position 1</span>
-        <span class="pos-text">Unbelievable love and incredible passion</span>
-      </div>
-      <div class="pos-card" onclick="pickPos(this, 2)">
-        <span class="pos-num">Position 2</span>
-        <span class="pos-text">Deep love — aching for more passion</span>
-      </div>
-      <div class="pos-card" onclick="pickPos(this, 3)">
-        <span class="pos-num">Position 3</span>
-        <span class="pos-text">Staying for convenience</span>
-      </div>
-      <div class="pos-card" onclick="pickPos(this, 4)">
-        <span class="pos-num">Position 4</span>
-        <span class="pos-text">In it — planning your escape</span>
-      </div>
-      <div class="pos-card" onclick="pickPos(this, 5)">
-        <span class="pos-num">Position 5</span>
-        <span class="pos-text">Not in one — don't want to be</span>
-      </div>
-      <div class="pos-card" onclick="pickPos(this, 6)">
-        <span class="pos-num">Position 6</span>
-        <span class="pos-text">Not in one — and ready for one</span>
+      <div class="seasons-grid">
+        <div class="season-card">
+          <span class="season-icon">🌱</span>
+          <span class="season-name">Spring</span>
+          <p class="season-body">"Springtime in the beginning of everything — is it hard or easy to grow? Incredibly easy. If you start a business in springtime, you think you're a genius. No, you're just in the right season."</p>
+        </div>
+        <div class="season-card">
+          <span class="season-icon">☀️</span>
+          <span class="season-name">Summer</span>
+          <p class="season-body">"What always follows spring is a testing time. Summer it's hot, it's a challenge. All of a sudden, the relationship doesn't feel effortless anymore."</p>
+        </div>
+        <div class="season-card">
+          <span class="season-icon">🍂</span>
+          <span class="season-name">Fall</span>
+          <p class="season-body">"If you make it through the testing time of summer, the universe or God seems to give us this cool season called fall — a reaping time where all of a sudden everything has the most magnificent colors, where everything is easy, fruits available. It's all there."</p>
+        </div>
+        <div class="season-card">
+          <span class="season-icon">❄️</span>
+          <span class="season-name">Winter</span>
+          <p class="season-body">"Winter is what makes us stronger. It bonds us the deepest part of our relationships — times where we came together when everything else looked like it was falling apart."</p>
+        </div>
       </div>
     </div>
-    <p class="a privacy-note">Only you can see this.</p>
-  </div>
 
-  <!-- ════════════════════════════════
-       S7 · BRIDGE — Vision
-  ════════════════════════════════ -->
-  <div class="screen" id="s7" data-bg="bg-rose" data-section="Your Relationship Vision">
-    <div class="a eyebrow">Your Relationship Vision</div>
-    <h2 class="a h-main">Tony is about to lead<br />you into your vision.</h2>
-    <div class="a rule"></div>
-    <p class="a bridge-rule-text">Let his questions land.<br />When he sends you to write, come back here.</p>
-  </div>
-
-  <!-- ════════════════════════════════
-       S8 · WRITE-OUT 1 — Vision
-  ════════════════════════════════ -->
-  <div class="screen" id="s8" data-bg="bg-night" data-section="Write Your Vision">
-    <div class="a eyebrow">Write Your Vision</div>
-    <p class="a prompt">"Describe it. What's this relationship all about? Who will it inspire? What will you do together? What will you share? What will you enjoy?"</p>
-    <p class="a attribution">— Tony Robbins</p>
-    <textarea class="a" id="vision1-field" placeholder="Write without stopping…" rows="6"></textarea>
-  </div>
-
-  <!-- ════════════════════════════════
-       S9 · WRITE-OUT 2 — Honest Question  (FLAGGED)
-  ════════════════════════════════ -->
-  <div class="screen" id="s9" data-bg="bg-night" data-section="The Honest Question">
-    <div class="a eyebrow">The Honest Question</div>
-    <p class="a prompt">"And then if you dare to be honest about why that vision has not yet been realized and what you can do to change it."</p>
-    <p class="a attribution">— Tony Robbins</p>
-    <textarea class="a" id="vision2-field" placeholder="Be honest with yourself…" rows="6"></textarea>
-  </div>
-
-  <!-- ════════════════════════════════
-       S10 · WRITE-OUT 3 — Who You're Bringing
-  ════════════════════════════════ -->
-  <div class="screen" id="s10" data-bg="bg-night" data-section="Who You're Bringing">
-    <div class="a eyebrow">Who You're Bringing</div>
-    <p class="a prompt">"What's most important to you in this relationship? What do you want to bring to it? Who are you going to bring to this relationship?"</p>
-    <p class="a attribution">— Tony Robbins</p>
-    <textarea class="a" id="vision3-field" placeholder="Who shows up for the one you love…" rows="6"></textarea>
-  </div>
-
-  <!-- ════════════════════════════════
-       S11 · VISION PAYOFF (scrollable)
-  ════════════════════════════════ -->
-  <div class="screen scrollable" id="s11" data-bg="bg-night" data-section="Your Vision · Day 1">
-    <div class="payoff-inner">
-      <p class="a payoff-header">Your Vision · Day 1</p>
-
-      <div class="a payoff-block">
-        <span class="payoff-label">Your Vision</span>
-        <p class="payoff-text" id="payoff1-text"></p>
-      </div>
-
-      <div class="a payoff-block">
-        <span class="payoff-label">The Honest Question</span>
-        <p class="payoff-text" id="payoff2-text"></p>
-      </div>
-
-      <div class="a payoff-block">
-        <span class="payoff-label">Who You're Bringing</span>
-        <p class="payoff-text" id="payoff3-text"></p>
-      </div>
-
-      <div class="a tony-card">
-        <div class="tony-card-eyebrow">✦ &nbsp;Tony AI</div>
-        <p class="tony-card-body">Your vision is here. Tony has a question about what's underneath it — something he'd only ask you.</p>
-        <button class="tony-card-btn" onclick="openTonyModal()">Ask Tony →</button>
+    <!-- Quote card: Seasons -->
+    <div class="quote-card">
+      <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800')"></div>
+      <div class="quote-card-overlay"></div>
+      <div class="quote-card-content">
+        <blockquote>"There are seasons. And if you think everything's supposed to be springtime — you're going to be very frustrated and disappointed. But every season is designed by God for a higher purpose."</blockquote>
+        <cite>— Tony Robbins</cite>
       </div>
     </div>
-  </div>
 
-  <!-- ════════════════════════════════
-       S12 · LOVE NOTE  (FLAGGED — creative addition)
-  ════════════════════════════════ -->
-  <div class="screen" id="s12" data-bg="bg-night" data-section="Before You Sleep">
-    <div class="a eyebrow">Your Partner</div>
-    <h2 class="a h-main" style="font-size:24px;">What do you want your beloved<br />to know tonight?</h2>
-    <textarea class="a" id="lovenote-field" placeholder="Write it…" rows="4"></textarea>
-    <div class="a love-note-actions">
-      <button class="btn-send" onclick="openSendModal()">Send it tonight →</button>
-      <button class="btn-private" onclick="go(1)">Keep it private</button>
+    <hr class="divider">
+
+    <!-- 1b · The Generous Lover -->
+    <div class="content-block">
+      <span class="eyebrow">The Generous Lover</span>
+
+      <!-- Quote card: Generous Lover -->
+      <div class="quote-card">
+        <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800')"></div>
+        <div class="quote-card-overlay"></div>
+        <div class="quote-card-content">
+          <blockquote>"What would a totally generous lover do for the one that they adore, for their beloved? What would they do?"</blockquote>
+          <cite>— Tony Robbins</cite>
+        </div>
+      </div>
+
+      <p class="body-text">
+        "If there's a theme of this program that will get you through all the seasons, it's you deciding that you are the source of the love in your relationship. As long as you're trying to get it from somebody, you're operating out of scarcity — and scarcity never feels good."
+      </p>
+      <br>
+      <p class="body-text">
+        "What if that's all you did? You just decided the love that I'm going to experience is the love that I'm giving. I'm not going to worry about getting it or not."
+      </p>
     </div>
-  </div>
 
-  <!-- ════════════════════════════════
-       S13 · CLOSE
-  ════════════════════════════════ -->
-  <div class="screen" id="s13" data-bg="bg-night" data-section="">
-    <p class="a ornament">✦&nbsp;&nbsp;✦&nbsp;&nbsp;✦</p>
-    <h2 class="a close-headline">Tonight you wrote<br />what you want.</h2>
-    <div class="a rule"></div>
-    <p class="a body-text">Day 2 — Saturday, 10 AM — we go into the patterns and seasons that shape every relationship. Stay close to the one you love tonight.</p>
-    <p class="a next-day" style="margin-top:32px;">
-      Day 2 · Patterns &amp; Seasons of Relationships<br />
-      Saturday, September 26 · 10:00 AM
-    </p>
-  </div>
-
-  <!-- ════════════════════════════════
-       NAV
-  ════════════════════════════════ -->
-  <div id="nav">
-    <button class="btn-back hidden" id="btn-back" onclick="go(-1)">← Back</button>
-    <div style="flex:1;"></div>
-    <button class="btn-next" id="btn-next" onclick="go(1)">Continue →</button>
-  </div>
-
-  <!-- ════════════════════════════════
-       TONY AI MODAL
-  ════════════════════════════════ -->
-  <div class="modal-overlay" id="tony-modal" onclick="closeTonyModal(event)">
-    <div class="modal-box">
-      <div class="modal-eyebrow">✦ &nbsp;Tony AI</div>
-      <p class="modal-body">Tony AI opens here.
-
-In the full experience: a private conversation where Tony's voice engages directly with your vision — asking what's underneath, surfacing a pattern, or asking the one question that opens it further.
-
-Your written entries are passed as context.</p>
-      <button class="modal-close" onclick="closeTonyModalDirect()">Close</button>
+    <!-- Quote card: Source of Love -->
+    <div class="quote-card">
+      <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800')"></div>
+      <div class="quote-card-overlay"></div>
+      <div class="quote-card-content">
+        <blockquote>"If you're sincerely generous in your love of this person and you're willing to give it openly and evenly, and you're not measuring what you're getting in return — it'll change everything."</blockquote>
+        <cite>— Tony Robbins</cite>
+      </div>
     </div>
-  </div>
 
-  <!-- ════════════════════════════════
-       SEND MODAL
-  ════════════════════════════════ -->
-  <div class="send-overlay" id="send-modal" onclick="closeSendModal(event)">
-    <div class="modal-box">
-      <div class="modal-eyebrow">Love Note</div>
-      <p class="modal-body">In the full experience, this sends directly to your partner — via SMS, email, or shared within the companion app.
+    <hr class="divider">
 
-For now, your words are held here. Safe.</p>
-      <button class="modal-close" onclick="closeSendModalDirect()">Close</button>
+    <!-- 1c · Beginner's Mind -->
+    <div class="content-block">
+      <span class="eyebrow">Beginner's Mind</span>
+
+      <!-- Quote card: Beginner's Mind -->
+      <div class="quote-card">
+        <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800')"></div>
+        <div class="quote-card-overlay"></div>
+        <div class="quote-card-content">
+          <blockquote>"Start this week with a beginner's mind. A beginner's mind is open to anything. You don't have all the knowledge. You're curious. You're open. You're in awe. You want to learn."</blockquote>
+          <cite>— Tony Robbins</cite>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <script>
-    // ── Screen configs ──
-    const SCREENS = [
-      { id: 's0',  bg: 'bg-warm',  section: '' },
-      { id: 's1',  bg: 'bg-warm',  section: 'Welcome' },
-      { id: 's2',  bg: 'bg-warm',  section: 'Intention' },
-      { id: 's3',  bg: 'bg-warm',  section: 'Intro Video · Day 1' },
-      { id: 's4',  bg: 'bg-rose',  section: 'Intro Video · Day 1' },
-      { id: 's5',  bg: 'bg-rose',  section: 'Intro Video · Day 1' },
-      { id: 's6',  bg: 'bg-rose',  section: 'Where Are You Now?' },
-      { id: 's7',  bg: 'bg-rose',  section: 'Your Relationship Vision' },
-      { id: 's8',  bg: 'bg-night', section: 'Write Your Vision' },
-      { id: 's9',  bg: 'bg-night', section: 'The Honest Question' },
-      { id: 's10', bg: 'bg-night', section: 'Who You\'re Bringing' },
-      { id: 's11', bg: 'bg-night', section: 'Your Vision · Day 1' },
-      { id: 's12', bg: 'bg-night', section: 'Before You Sleep' },
-      { id: 's13', bg: 'bg-night', section: '' },
-    ];
+  </section>
 
-    let cur = 0;
 
-    // ── localStorage helpers ──
-    function save(key, val) {
-      try { localStorage.setItem('lp_day1_' + key, val); } catch(e) {}
-    }
-    function load(key) {
-      try { return localStorage.getItem('lp_day1_' + key) || ''; } catch(e) { return ''; }
-    }
+  <!-- ════════════════════════════════════════
+       SECTION 2 · WHERE ARE YOU NOW?
+       ════════════════════════════════════════ -->
+  <section id="positions" class="section">
 
-    // ── Restore saved fields ──
-    function restoreFields() {
-      const fields = [
-        ['intention-field',  'intention'],
-        ['vision1-field',    'vision1'],
-        ['vision2-field',    'vision2'],
-        ['vision3-field',    'vision3'],
-        ['lovenote-field',   'lovenote'],
-      ];
-      fields.forEach(([id, key]) => {
-        const el = document.getElementById(id);
-        if (el) el.value = load(key);
-      });
-    }
+    <div class="section-header">
+      <span class="eyebrow">The Six Positions</span>
+      <h1>Where Are You Now?</h1>
+    </div>
 
-    // ── Auto-save on input ──
-    function bindAutoSave() {
-      const fields = [
-        ['intention-field',  'intention'],
-        ['vision1-field',    'vision1'],
-        ['vision2-field',    'vision2'],
-        ['vision3-field',    'vision3'],
-        ['lovenote-field',   'lovenote'],
-      ];
-      fields.forEach(([id, key]) => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', () => save(key, el.value));
-      });
-    }
+    <div class="position-grid" id="positionGrid">
 
-    // ── Render ──
-    function render() {
-      const total = SCREENS.length - 1; // 0-indexed, 13 screens
-      const cfg = SCREENS[cur];
+      <button class="position-card" data-pos="1" onclick="selectPosition(this)">
+        <span class="pos-num"><span class="pos-check">✦</span> Position 1</span>
+        <span class="pos-label">Unbelievable love and incredible passion</span>
+      </button>
 
-      // Toggle screens
-      SCREENS.forEach((s, i) => {
-        const el = document.getElementById(s.id);
-        if (i === cur) {
-          el.classList.add('active');
-          // Re-trigger animations by cloning animated children
-          el.querySelectorAll('.a').forEach(child => {
-            child.style.animation = 'none';
-            child.offsetHeight; // reflow
-            child.style.animation = '';
-          });
-        } else {
-          el.classList.remove('active');
-        }
-      });
+      <button class="position-card" data-pos="2" onclick="selectPosition(this)">
+        <span class="pos-num"><span class="pos-check">✦</span> Position 2</span>
+        <span class="pos-label">Deep love — aching for more passion</span>
+      </button>
 
-      // Scroll active screen to top
-      const activeEl = document.getElementById(cfg.id);
-      if (activeEl.classList.contains('scrollable')) {
-        activeEl.scrollTop = 0;
+      <button class="position-card" data-pos="3" onclick="selectPosition(this)">
+        <span class="pos-num"><span class="pos-check">✦</span> Position 3</span>
+        <span class="pos-label">Staying for convenience</span>
+      </button>
+
+      <button class="position-card" data-pos="4" onclick="selectPosition(this)">
+        <span class="pos-num"><span class="pos-check">✦</span> Position 4</span>
+        <span class="pos-label">In it — planning your escape</span>
+      </button>
+
+      <button class="position-card" data-pos="5" onclick="selectPosition(this)">
+        <span class="pos-num"><span class="pos-check">✦</span> Position 5</span>
+        <span class="pos-label">Not in one, don't want to be right now</span>
+      </button>
+
+      <button class="position-card" data-pos="6" onclick="selectPosition(this)">
+        <span class="pos-num"><span class="pos-check">✦</span> Position 6</span>
+        <span class="pos-label">Not in one — and ready</span>
+      </button>
+
+    </div>
+
+    <p class="privacy-note">This is private.</p>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 3 · YOUR VISION
+       ════════════════════════════════════════ -->
+  <section id="vision" class="section">
+
+    <div class="section-header">
+      <span class="eyebrow">Day 1 · Write-Out</span>
+      <h1>Your Vision</h1>
+    </div>
+
+    <!-- Outcome -->
+    <div class="outcome-block">
+      <span class="eyebrow">Your Outcome</span>
+      <p class="prompt-quote">What is your outcome for this weekend — and why is it a must for you?</p>
+      <textarea id="outcome" rows="4" placeholder="" oninput="saveField(this)"></textarea>
+    </div>
+
+    <!-- Prompt 1 -->
+    <div class="prompt-block">
+      <p class="prompt-quote">"Describe it. What's this relationship all about? Who will it inspire? What will you do together? What will you share? What will you enjoy?"</p>
+      <span class="prompt-attr">— Tony Robbins</span>
+      <textarea id="vision1" rows="6" placeholder="Write it out." oninput="saveField(this); updatePayoff()"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Prompt 2 -->
+    <div class="prompt-block">
+      <p class="prompt-quote">"And then if you dare to be honest about why that vision has not yet been realized and what you can do to change it."</p>
+      <span class="prompt-attr">— Tony Robbins</span>
+      <textarea id="vision2" rows="6" placeholder="Be honest." oninput="saveField(this); updatePayoff()"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Prompt 3 -->
+    <div class="prompt-block">
+      <p class="prompt-quote">"What's most important to you in this relationship? What do you want to bring to it? Who are you going to bring to this relationship?"</p>
+      <span class="prompt-attr">— Tony Robbins</span>
+      <textarea id="vision3" rows="6" placeholder="" oninput="saveField(this); updatePayoff()"></textarea>
+    </div>
+
+    <!-- Vision Payoff -->
+    <div class="vision-payoff">
+      <span class="section-eyebrow">Your Vision · Day 1</span>
+
+      <div class="vision-entry">
+        <span class="vision-entry-label">Outcome</span>
+        <div id="payoff-outcome" class="vision-entry-text vision-entry-empty">—</div>
+      </div>
+
+      <div class="vision-entry">
+        <span class="vision-entry-label">The Vision</span>
+        <div id="payoff-vision1" class="vision-entry-text vision-entry-empty">—</div>
+      </div>
+
+      <div class="vision-entry">
+        <span class="vision-entry-label">The Truth</span>
+        <div id="payoff-vision2" class="vision-entry-text vision-entry-empty">—</div>
+      </div>
+
+      <div class="vision-entry" style="margin-bottom:0;">
+        <span class="vision-entry-label">What You Bring</span>
+        <div id="payoff-vision3" class="vision-entry-text vision-entry-empty">—</div>
+      </div>
+
+      <!-- Tony AI -->
+      <div class="tony-ai-card">
+        <div>
+          <span class="ai-eyebrow">✦ Tony AI</span>
+          <p class="ai-body">Want to go deeper? Tony can respond to what you wrote.</p>
+        </div>
+        <button class="ai-btn" onclick="tonyAIAlert()">Ask Tony →</button>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       SECTION 4 · YOUR JOURNAL
+       ════════════════════════════════════════ -->
+  <section id="journal" class="section">
+
+    <div class="section-header">
+      <span class="eyebrow">Day 1 · Companion</span>
+      <h1>Your Journal</h1>
+    </div>
+
+    <!-- Outcome -->
+    <div class="journal-entry">
+      <span class="journal-label">Your Outcome</span>
+      <div id="j-outcome" class="journal-text journal-empty">—</div>
+    </div>
+
+    <!-- Position -->
+    <div class="journal-entry">
+      <span class="journal-label">Where You Are Now</span>
+      <div id="j-position" class="journal-text journal-empty">—</div>
+    </div>
+
+    <!-- Vision 1 -->
+    <div class="journal-entry">
+      <span class="journal-label">The Vision</span>
+      <div id="j-vision1" class="journal-text journal-empty">—</div>
+    </div>
+
+    <!-- Vision 2 -->
+    <div class="journal-entry">
+      <span class="journal-label">The Truth</span>
+      <div id="j-vision2" class="journal-text journal-empty">—</div>
+    </div>
+
+    <!-- Vision 3 -->
+    <div class="journal-entry">
+      <span class="journal-label">What You Bring</span>
+      <div id="j-vision3" class="journal-text journal-empty">—</div>
+    </div>
+
+    <!-- Free notes -->
+    <div class="journal-entry">
+      <span class="journal-label">Notes</span>
+      <textarea id="notes" rows="6" placeholder="Anything else from today." oninput="saveField(this)" style="width:100%;"></textarea>
+    </div>
+
+    <!-- Tony AI -->
+    <div class="tony-ai-card" style="margin-bottom:48px;">
+      <div>
+        <span class="ai-eyebrow">✦ Tony AI</span>
+        <p class="ai-body">Want to go deeper? Tony can respond to what you wrote.</p>
+      </div>
+      <button class="ai-btn" onclick="tonyAIAlert()">Ask Tony →</button>
+    </div>
+
+    <!-- Love Note -->
+    <div class="love-note-block">
+      <span class="eyebrow">For Your Partner</span>
+      <p class="prompt-quote" style="font-size:17px; margin-bottom:20px;">What do you want your beloved to know tonight?</p>
+      <textarea id="lovenote" rows="5" placeholder="" oninput="saveField(this)"></textarea>
+      <div class="love-note-actions">
+        <button class="btn-send" onclick="sendAlert()">Send it →</button>
+        <button class="btn-ghost">Keep it private</button>
+      </div>
+    </div>
+
+    <!-- Close -->
+    <div class="close-block">
+      <span class="close-ornament">✦  ✦  ✦</span>
+      <p class="close-quote">"Tonight you wrote what you want."</p>
+      <p class="close-body">Day 2 — Saturday, 10 AM — patterns and seasons.<br>Stay close to the one you love tonight.</p>
+      <span class="close-day2">Day 2 · Patterns &amp; Seasons of Relationships · Saturday, September 26 · 10:00 AM</span>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  // ── SECTION NAVIGATION ──
+  function showSection(id, btn) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    // Deactivate all nav buttons (desktop + mobile)
+    document.querySelectorAll('.nav-btn, .mobile-nav-btn').forEach(b => b.classList.remove('active'));
+
+    // Activate all buttons matching this section
+    document.querySelectorAll('[data-section="' + id + '"]').forEach(b => b.classList.add('active'));
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Refresh journal view when entering it
+    if (id === 'journal') refreshJournal();
+  }
+
+  // ── POSITION SELECTION ──
+  function selectPosition(card) {
+    document.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    const pos = card.getAttribute('data-pos');
+    const label = card.querySelector('.pos-label').textContent;
+    localStorage.setItem('lp_position', pos);
+    localStorage.setItem('lp_position_label', label);
+    refreshJournal();
+  }
+
+  // ── FIELD PERSISTENCE ──
+  function saveField(el) {
+    localStorage.setItem('lp_' + el.id, el.value);
+    if (el.id === 'outcome') refreshJournal();
+  }
+
+  function restoreFields() {
+    ['outcome','vision1','vision2','vision3','notes','lovenote'].forEach(function(id) {
+      var val = localStorage.getItem('lp_' + id);
+      if (val) {
+        var el = document.getElementById(id);
+        if (el) el.value = val;
       }
-
-      // Background
-      document.body.className = cfg.bg;
-
-      // Progress bar
-      const pct = total > 0 ? (cur / total) * 100 : 0;
-      document.getElementById('progress-fill').style.width = pct + '%';
-
-      // Section tag
-      document.getElementById('section-tag').textContent = cfg.section;
-
-      // Nav buttons
-      const btnBack = document.getElementById('btn-back');
-      const btnNext = document.getElementById('btn-next');
-
-      btnBack.classList.toggle('hidden', cur === 0);
-      btnNext.classList.toggle('hidden', cur === SCREENS.length - 1);
-
-      // Vision payoff
-      if (cur === 11) showPayoff();
-    }
-
-    // ── Go ──
-    function go(dir) {
-      const next = cur + dir;
-      if (next < 0 || next >= SCREENS.length) return;
-      cur = next;
-      render();
-    }
-
-    // ── Positions ──
-    function pickPos(el, n) {
-      // Clear previous selection
-      document.querySelectorAll('.pos-card').forEach(c => c.classList.remove('selected'));
-      el.classList.add('selected');
-      save('position', n);
-      setTimeout(() => go(1), 480);
-    }
-
-    // ── Vision payoff ──
-    function showPayoff() {
-      const v1 = load('vision1');
-      const v2 = load('vision2');
-      const v3 = load('vision3');
-
-      setPayoff('payoff1-text', v1, 'Describe your relationship vision here during the write-out.');
-      setPayoff('payoff2-text', v2, 'What\'s gotten in the way — and what you\'ll do differently.');
-      setPayoff('payoff3-text', v3, 'Who you\'re going to bring to this relationship.');
-    }
-
-    function setPayoff(id, text, emptyMsg) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (text && text.trim()) {
-        el.textContent = text.trim();
-        el.className = 'payoff-text';
-      } else {
-        el.textContent = emptyMsg;
-        el.className = 'payoff-empty';
-      }
-    }
-
-    // ── Tony AI Modal ──
-    function openTonyModal() {
-      document.getElementById('tony-modal').classList.add('open');
-    }
-
-    function closeTonyModal(e) {
-      if (e.target === document.getElementById('tony-modal')) {
-        document.getElementById('tony-modal').classList.remove('open');
-      }
-    }
-
-    function closeTonyModalDirect() {
-      document.getElementById('tony-modal').classList.remove('open');
-    }
-
-    // ── Send Modal ──
-    function openSendModal() {
-      document.getElementById('send-modal').classList.add('open');
-    }
-
-    function closeSendModal(e) {
-      if (e.target === document.getElementById('send-modal')) {
-        document.getElementById('send-modal').classList.remove('open');
-      }
-    }
-
-    function closeSendModalDirect() {
-      document.getElementById('send-modal').classList.remove('open');
-    }
-
-    // ── Keyboard ──
-    document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowRight') go(1);
-      if (e.key === 'ArrowLeft')  go(-1);
     });
 
-    // ── Init ──
-    restoreFields();
-    bindAutoSave();
-    render();
-  </script>
+    // Restore position
+    var pos = localStorage.getItem('lp_position');
+    if (pos) {
+      var card = document.querySelector('[data-pos="' + pos + '"]');
+      if (card) card.classList.add('selected');
+    }
+
+    updatePayoff();
+    refreshJournal();
+  }
+
+  // ── VISION PAYOFF ──
+  function updatePayoff() {
+    var fields = {
+      'payoff-outcome': 'outcome',
+      'payoff-vision1': 'vision1',
+      'payoff-vision2': 'vision2',
+      'payoff-vision3': 'vision3'
+    };
+
+    Object.keys(fields).forEach(function(payoffId) {
+      var srcId = fields[payoffId];
+      var el = document.getElementById(srcId);
+      var payoff = document.getElementById(payoffId);
+      var val = el ? el.value.trim() : '';
+      if (val) {
+        payoff.textContent = val;
+        payoff.classList.remove('vision-entry-empty');
+      } else {
+        payoff.textContent = '—';
+        payoff.classList.add('vision-entry-empty');
+      }
+    });
+  }
+
+  // Listen to outcome textarea for payoff update too
+  document.getElementById('outcome').addEventListener('input', updatePayoff);
+
+  // ── JOURNAL REFRESH ──
+  function refreshJournal() {
+    function setJournal(id, val, emptyText) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (val && val.trim()) {
+        el.textContent = val.trim();
+        el.classList.remove('journal-empty');
+      } else {
+        el.textContent = emptyText || '—';
+        el.classList.add('journal-empty');
+      }
+    }
+
+    setJournal('j-outcome', document.getElementById('outcome').value);
+    setJournal('j-vision1', document.getElementById('vision1').value);
+    setJournal('j-vision2', document.getElementById('vision2').value);
+    setJournal('j-vision3', document.getElementById('vision3').value);
+
+    var posLabel = localStorage.getItem('lp_position_label');
+    var posNum = localStorage.getItem('lp_position');
+    if (posLabel && posNum) {
+      setJournal('j-position', 'Position ' + posNum + ' · ' + posLabel);
+    } else {
+      setJournal('j-position', null);
+    }
+  }
+
+  // Auto-sync journal when vision fields change
+  ['vision1','vision2','vision3'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', refreshJournal);
+  });
+
+  // ── TONY AI ALERT ──
+  function tonyAIAlert() {
+    alert("Tony AI opens here.\n\nIn the full experience, Tony's voice engages directly with your vision — asking what's underneath, surfacing a pattern, or asking the one question that opens it further. Your entries are passed as context.");
+  }
+
+  // ── SEND ALERT ──
+  function sendAlert() {
+    alert("In the full experience, your note is delivered privately to your partner's device at the moment you choose — tonight, tomorrow morning, or held until the end of the weekend.");
+  }
+
+  // ── AUTO-RESIZE TEXTAREAS ──
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+  }
+
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    ta.addEventListener('input', function() { autoResize(this); });
+    autoResize(ta);
+  });
+
+  // ── INIT ──
+  restoreFields();
+
+  // Resize all textareas after restore
+  setTimeout(function() {
+    document.querySelectorAll('textarea').forEach(function(ta) { autoResize(ta); });
+  }, 50);
+</script>
 </body>
 </html>
