@@ -789,9 +789,23 @@
 </head>
 <body>
 
+<!-- LANDING -->
+<div id="landing" style="position:fixed;inset:0;background:#FDFAF5;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;padding:40px;text-align:center;">
+  <img src="tr-logo.svg" alt="Tony Robbins" style="height:20px;margin-bottom:32px;opacity:0.8;">
+  <div style="font-family:'SuisseIntl',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#C84B31;margin-bottom:16px;">Love and Passion</div>
+  <div style="font-family:Georgia,serif;font-style:italic;font-size:34px;color:#1A1612;margin-bottom:8px;">Ultimate Relationship</div>
+  <div style="font-family:'SuisseIntl',sans-serif;font-size:13px;color:#6B6259;margin-bottom:48px;">Day 1 &nbsp;&middot;&nbsp; Friday, September 25</div>
+  <input id="name-input" type="text" placeholder="Your first name" style="font-family:'SuisseIntl',sans-serif;font-size:16px;color:#1A1612;background:transparent;border:none;border-bottom:1px solid rgba(163,144,93,0.35);padding:10px 0;width:100%;max-width:260px;text-align:center;outline:none;margin-bottom:32px;" />
+  <button onclick="startExperience()" style="font-family:'SuisseIntl',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C84B31;background:transparent;border:1px solid rgba(200,75,49,0.28);padding:13px 28px;cursor:pointer;border-radius:2px;">Begin &rarr;</button>
+  <div style="font-family:'SuisseIntl',sans-serif;font-size:11px;color:rgba(107,98,89,0.4);margin-top:16px;">or <span onclick="startExperience()" style="cursor:pointer;text-decoration:underline;">continue as guest</span></div>
+</div>
+
 <!-- TOP NAV -->
 <nav id="top-nav">
-  <div id="brand">Love and Passion</div>
+  <div id="brand">
+    <img src="tr-logo.svg" alt="Tony Robbins" style="height:18px;display:block;margin-bottom:4px;opacity:0.85;">
+    <span style="font-family:'SuisseIntl',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#6B6259;">Love and Passion</span>
+  </div>
   <div id="top-tabs">
     <div class="top-tab active" data-area="workbook" onclick="switchArea('workbook', this)">Workbook</div>
     <div class="top-tab" data-area="inspiration" onclick="switchArea('inspiration', this)">Inspiration</div>
@@ -967,7 +981,7 @@
         <!-- Tony AI — above questions -->
         <div class="tony-ai-card">
           <span class="eyebrow">✦ Tony AI</span>
-          <p class="body-text">Struggling to find the words? Tony can help you articulate what you're feeling — then you write it in your own words.</p>
+          <p class="body-text">Know what you feel but can't say it? Tony can help you find the exact language — then you write it yourself.</p>
           <button class="btn-primary" onclick="openTonyAI()">Help me put this into words →</button>
         </div>
 
@@ -1035,49 +1049,49 @@
     <h1 class="insp-section-title">Inspiration</h1>
 
     <!-- Quote Cards -->
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">Love opens me,<br>It calls me,<br>Love reminds me,<br>It humbles me,<br>Love consumes me,<br>It ignites me…</div>
         <div class="quote-attr">— Sage Robbins</div>
       </div>
     </div>
 
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">Love is the oxygen of life.</div>
         <div class="quote-attr">— Tony Robbins</div>
       </div>
     </div>
 
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">Do what you did in the beginning of a relationship and there won't be an end.</div>
         <div class="quote-attr">— Tony Robbins</div>
       </div>
     </div>
 
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">Love never dies a natural death. It dies because we don't know how to replenish its source. It dies of blindness, and errors and betrayals.</div>
         <div class="quote-attr">— Anaïs Nin</div>
       </div>
     </div>
 
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">Love is the whole thing. We are only pieces.</div>
         <div class="quote-attr">— Rumi</div>
       </div>
     </div>
 
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1491841573634-28140fc7ced7?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">To love another person is to see the face of God.</div>
         <div class="quote-attr">— Victor Hugo, Les Misérables</div>
       </div>
     </div>
 
-    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800')">
+    <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=800&fit=crop&crop=faces')">
       <div class="quote-card-inner">
         <div class="quote-text">If you are going to fight, do it naked, while holding hands. It's awfully hard to be mad at someone when you are both naked!</div>
         <div class="quote-attr">— Father Pat, Catholic Priest</div>
@@ -1085,14 +1099,6 @@
     </div>
 
     <hr class="divider">
-
-    <!-- Generous Lover Challenge -->
-    <div class="generous-challenge-card">
-      <span class="eyebrow">The Generous Lover Challenge</span>
-      <div class="challenge-title">What would a generous lover do this week for the one they adore?</div>
-      <textarea id="generous-challenge" placeholder="One act. Write it here…" oninput="autoExpand(this); saveLS('generous-challenge', this.value)"></textarea>
-      <p class="challenge-sub">One act. Write it here. Then do it.</p>
-    </div>
 
     <!-- Date Night Sparks -->
     <span class="eyebrow">Date Night Sparks</span>
@@ -1103,22 +1109,18 @@
       </div>
       <div class="spark-card">
         <span class="spark-num">02</span>
-        <span class="spark-text">Do the Six Positions exercise together. Where are you each? Where do you want to be?</span>
-      </div>
-      <div class="spark-card">
-        <span class="spark-num">03</span>
         <span class="spark-text">Read Sage's poem to each other. Out loud.</span>
       </div>
       <div class="spark-card">
-        <span class="spark-num">04</span>
+        <span class="spark-num">03</span>
         <span class="spark-text">Write your partner a letter about what first attracted you to them. Exchange and read.</span>
       </div>
       <div class="spark-card">
-        <span class="spark-num">05</span>
+        <span class="spark-num">04</span>
         <span class="spark-text">Ask: "What do I do that makes you feel most loved?" Then just listen.</span>
       </div>
       <div class="spark-card">
-        <span class="spark-num">06</span>
+        <span class="spark-num">05</span>
         <span class="spark-text">Plan one evening this week with no screens. Just each other.</span>
       </div>
     </div>
@@ -1195,6 +1197,24 @@
 </div><!-- /main -->
 
 <script>
+// ── LANDING ──
+function startExperience() {
+  const name = (document.getElementById('name-input').value || '').trim();
+  if (name) {
+    localStorage.setItem('participant_name', name);
+    document.querySelectorAll('.participant-name').forEach(el => el.textContent = name);
+  }
+  const el = document.getElementById('landing');
+  el.style.transition = 'opacity 0.5s ease';
+  el.style.opacity = '0';
+  setTimeout(() => el.style.display = 'none', 500);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('participant_name');
+  if (saved) { document.getElementById('name-input').value = saved; startExperience(); }
+  document.getElementById('name-input').addEventListener('keydown', e => { if (e.key === 'Enter') startExperience(); });
+});
+
 // ── AREA SWITCHING ──
 function switchArea(area, tab) {
   document.querySelectorAll('.area').forEach(a => a.classList.remove('active'));
