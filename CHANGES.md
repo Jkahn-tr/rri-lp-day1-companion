@@ -8,11 +8,11 @@
 - [x] Page-by-page views — one section = one view, no cross-section scrolling
 - [x] Main navigation (Workbook / Inspiration / Journal) — LEFT SIDEBAR, prominent, impossible to miss
 - [x] Workbook structure clear — numbered sections, active state obvious, section header visible in content area
-- [x] Workbook sub-sections: 1. Foundation and Vision · 2. Where Are You Now? · 3. Your Vision for the Ultimate Relationship
+- [x] Workbook has 3 sub-sections: 1. Foundation and Vision · 2. Where Are You Now? · 3. Your Vision for the Ultimate Relationship (not 4 — Your Ultimate Relationship is top-level)
 - [x] Inspiration: internal sub-navigation — Quotes | Sage's Poem | Date Night Sparks | Generous Lover Challenge — each its own view, no scrolling
 - [x] Journal: BM-style — Principles / Insights / Actions tabs, timestamped entries, multiple entries per tab, Add Entry button clear
 - [x] Progress tracking per section — visible indicator showing where participant is (from BM pattern)
-- [x] 4th Workbook section: "4. Your Ultimate Relationship" — PLACEHOLDER for now (confirmed by Pam). Pulls whole event together.
+- [x] Your Ultimate Relationship = 4th TOP-LEVEL area (NOT inside Workbook). Four main areas: Workbook | Inspiration | Journal | Your Ultimate Relationship. PLACEHOLDER content for now.
 
 ---
 
