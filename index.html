@@ -20,8 +20,8 @@
   :root {
     --bg: #FDFAF5;
     --surface: #FFFFFF;
-    --text: #1A1612;
-    --secondary: #4A4540;
+    --text: #0E0B09;
+    --secondary: #2E2925;
     --red: #C84B31;
     --gold: #A3905D;
     --border: rgba(163,144,93,0.3);
@@ -36,11 +36,11 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-ui);
-    font-weight: 400;
+    font-weight: 450;
     font-size: 16px;
     line-height: 1.85;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -192,8 +192,8 @@
 
   /* ─── TYPOGRAPHY ─── */
   .section-title {
-    font-size: 30px !important;
-    font-weight: 600;
+    font-size: 32px !important;
+    font-weight: 700;
     font-family: var(--font-ui);
     font-weight: 300;
     font-size: 42px;
@@ -807,8 +807,8 @@
   :root {
     --bg: #FDFAF5;
     --surface: #FFFFFF;
-    --text: #1A1612;
-    --secondary: #4A4540;
+    --text: #0E0B09;
+    --secondary: #2E2925;
     --red: #C84B31;
     --gold: #A3905D;
     --border: rgba(163,144,93,0.3);
@@ -821,7 +821,7 @@
     background: var(--bg);
     color: var(--text);
     font-family: 'SuisseIntl', -apple-system, sans-serif;
-    font-weight: 400;
+    font-weight: 450;
     font-size: 16px;
     line-height: 1.85;
     display: flex;
@@ -1718,16 +1718,19 @@
 
   /* ── COPYRIGHT ── */
   #copyright {
-    width: 100%;
-    flex-shrink: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     text-align: center;
-    padding: 24px 32px;
+    padding: 12px 32px;
     font-family: 'SuisseIntl', sans-serif;
     font-size: 10px;
     letter-spacing: 1px;
-    color: rgba(107,98,89,0.5);
-    border-top: 1px solid var(--border);
-    flex-shrink: 0;
+    color: rgba(107,98,89,0.55);
+    background: rgba(253,250,245,0.95);
+    border-top: 1px solid rgba(163,144,93,0.15);
   }
 
   /* ── WORKBOOK SECTION BANNER ── */
@@ -1914,7 +1917,7 @@
     font-weight: 500;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #4A4540;
+    color: #2E2925;
   }
 
   /* ── JOURNAL HINT ── */
@@ -1932,10 +1935,10 @@
 
 <!-- LANDING -->
 <div id="landing" style="position:fixed;inset:0;background:#FDFAF5;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;padding:40px;text-align:center;">
-  <div style="font-family:'SuisseIntl',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1A1612;margin-bottom:6px;">Tony and Sage Robbins</div>
-  <div style="font-family:'SuisseIntl',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#A3905D;margin-bottom:36px;">Love and Passion</div>
+  <div style="font-family:'SuisseIntl',sans-serif;font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:#1A1612;margin-bottom:5px;">Tony and Sage Robbins</div>
+  <div style="font-family:'SuisseIntl',sans-serif;font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#A3905D;margin-bottom:36px;">Love and Passion</div>
   <div style="font-family:Georgia,serif;font-size:34px;color:#1A1612;margin-bottom:8px;">Ultimate Relationship</div>
-  <div style="font-family:'SuisseIntl',sans-serif;font-size:13px;color:#4A4540;margin-bottom:48px;">Day 1 &nbsp;&middot;&nbsp; Friday, September 25</div>
+  <div style="font-family:'SuisseIntl',sans-serif;font-size:13px;color:#2E2925;margin-bottom:48px;">Day 1 &nbsp;&middot;&nbsp; Friday, September 25</div>
   <input id="name-input" type="text" placeholder="Your first name" style="font-family:'SuisseIntl',sans-serif;font-size:16px;color:#1A1612;background:transparent;border:none;border-bottom:1px solid rgba(163,144,93,0.35);padding:10px 0;width:100%;max-width:260px;text-align:center;outline:none;margin-bottom:32px;" />
   <button onclick="startExperience()" style="font-family:'SuisseIntl',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C84B31;background:transparent;border:1px solid rgba(200,75,49,0.28);padding:13px 28px;cursor:pointer;border-radius:2px;">Begin &rarr;</button>
   <div style="font-family:'SuisseIntl',sans-serif;font-size:11px;color:rgba(107,98,89,0.4);margin-top:16px;">or <span onclick="startExperience()" style="cursor:pointer;text-decoration:underline;">continue as guest</span></div>
@@ -1948,8 +1951,8 @@
   <!-- ══════════════ UNIFIED LEFT SIDEBAR ══════════════ -->
   <div id="main-sidebar">
     <div id="sidebar-brand">
-      <div style="font-family:'SuisseIntl',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#1A1612;margin-bottom:4px;">Tony and Sage Robbins</div>
-      <div style="font-family:'SuisseIntl',sans-serif;font-size:9px;font-weight:400;letter-spacing:3.5px;text-transform:uppercase;color:#A3905D;">Love and Passion</div>
+      <div style="font-family:'SuisseIntl',sans-serif;font-size:8px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:#1A1612;margin-bottom:5px;">Tony and Sage Robbins</div>
+      <div style="font-family:'SuisseIntl',sans-serif;font-size:12px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:#A3905D;">Love and Passion</div>
     </div>
 
     <nav id="sidebar-nav">
@@ -2232,12 +2235,7 @@
     <!-- Section: Quotes -->
     <div id="insp-quotes" class="insp-section active">
 
-      <div class="quote-card" style="background-color:#2a2018; background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800&q=80')">
-        <div class="quote-card-inner">
-          <div class="quote-text">Love opens me,<br>It calls me,<br>Love reminds me,<br>It humbles me,<br>Love consumes me,<br>It ignites me...</div>
-          <div class="quote-attr">- Sage Robbins</div>
-        </div>
-      </div>
+
 
       <div class="quote-card" style="background-color:#2a2018; background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&q=80')">
         <div class="quote-card-inner">
