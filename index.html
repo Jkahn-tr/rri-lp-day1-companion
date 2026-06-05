@@ -3,1204 +3,1189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love &amp; Passion · Day 1</title>
+<title>Love and Passion — Day 1</title>
 <style>
-  :root {
-    --cream: #FDFAF5;
-    --white: #FFFFFF;
-    --ink: #1A1612;
-    --mid: #6B6259;
-    --gold: #A3905D;
-    --gold-light: #C5B99A;
-    --gold-border: rgba(163,144,93,0.2);
-    --gold-fill: rgba(163,144,93,0.08);
-    --nav-w: 200px;
-    --radius: 4px;
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FDFAF5;
+    --surface: #FFFFFF;
+    --text-primary: #1A1612;
+    --text-secondary: #6B6259;
+    --red: #C84B31;
+    --gold: #A3905D;
+    --border: rgba(163,144,93,0.18);
+    --sidebar-inactive: #9B8E80;
+    --sidebar-w: 220px;
+  }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--cream);
-    color: var(--ink);
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
     font-size: 15px;
     line-height: 1.8;
     min-height: 100vh;
   }
 
-  /* ───── LAYOUT ───── */
-  .app {
-    display: flex;
-    min-height: 100vh;
-  }
-
-  /* ───── SIDEBAR ───── */
+  /* ─── SIDEBAR ─── */
   .sidebar {
-    width: var(--nav-w);
-    flex-shrink: 0;
     position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    background: var(--white);
-    border-right: 1px solid var(--gold-border);
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--bg);
+    border-right: 1px solid rgba(163,144,93,0.15);
     display: flex;
     flex-direction: column;
-    padding: 40px 0 32px;
     z-index: 100;
+    overflow-y: auto;
   }
 
   .sidebar-brand {
-    padding: 0 24px 32px;
-    border-bottom: 1px solid var(--gold-border);
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid var(--border);
   }
 
-  .sidebar-brand .eyebrow {
+  .sidebar-eyebrow {
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 6px;
+    color: var(--red);
+    margin-bottom: 4px;
   }
 
-  .sidebar-brand .day-label {
-    font-family: Georgia, 'Times New Roman', serif;
+  .sidebar-day {
+    font-family: Georgia, serif;
     font-style: italic;
-    font-size: 16px;
-    color: var(--ink);
-    line-height: 1.3;
+    font-size: 22px;
+    color: var(--text-primary);
   }
 
-  .nav-list {
-    list-style: none;
-    padding: 24px 0;
+  .sidebar-nav {
+    padding: 20px 0;
     flex: 1;
   }
 
-  .nav-list li { position: relative; }
-
-  .nav-btn {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 12px 24px;
-    font-size: 10px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
-    transition: color 0.2s;
-    position: relative;
+  .sidebar-nav a {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 11px 24px;
+    text-decoration: none;
+    color: var(--sidebar-inactive);
+    font-size: 12px;
+    line-height: 1.45;
+    border-left: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
   }
-
-  .nav-btn::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 0;
-    background: var(--gold);
-    border-radius: 0 2px 2px 0;
-    transition: height 0.2s;
-  }
-
-  .nav-btn.active {
-    color: var(--gold);
-  }
-
-  .nav-btn.active::before {
-    height: 24px;
-  }
-
-  .nav-btn:hover { color: var(--gold); }
 
   .nav-num {
-    display: inline-block;
-    width: 16px;
-    opacity: 0.5;
-    font-size: 9px;
-    vertical-align: middle;
-    margin-right: 2px;
+    flex-shrink: 0;
+    font-size: 11px;
   }
 
-  .sidebar-footer {
-    padding: 0 24px;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-light);
+  .sidebar-nav a.active {
+    color: var(--red);
+    border-left-color: var(--red);
+    font-weight: 500;
   }
 
-  /* ───── MAIN CONTENT ───── */
+  .sidebar-nav a:hover:not(.active) {
+    color: var(--text-primary);
+  }
+
+  /* ─── MAIN ─── */
   .main {
-    margin-left: var(--nav-w);
-    flex: 1;
-    max-width: calc(720px + var(--nav-w));
+    margin-left: var(--sidebar-w);
+    padding: 0 48px 120px;
   }
 
   .section {
-    display: none;
-    padding: 48px 40px 80px;
-    max-width: 720px;
+    padding: 80px 0 60px;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
-  .section.active { display: block; }
-
-  /* ───── TOP NAV MOBILE ───── */
-  .mobile-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: var(--white);
-    border-bottom: 1px solid var(--gold-border);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .section + .section,
+  .final-anchor {
+    border-top: 1px solid var(--border);
   }
 
-  .mobile-nav-inner {
-    display: flex;
-    min-width: max-content;
-    padding: 0 16px;
-  }
-
-  .mobile-nav-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .mobile-nav-btn.active {
-    color: var(--gold);
-    border-bottom-color: var(--gold);
-  }
-
-  /* ───── EYEBROW ───── */
+  /* ─── TYPOGRAPHY ─── */
   .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .section-title {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin-bottom: 36px;
+  }
+
+  .subsection-header {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ─── WELCOME BLOCK ─── */
+  .welcome-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+  }
+
+  .welcome-block p { color: var(--text-secondary); }
+
+  .welcome-attribution {
+    margin-top: 20px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold);
+  }
+
+  /* ─── POEM BLOCK ─── */
+  .poem-block {
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .poem-lines {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 2;
+    color: var(--text-primary);
+    white-space: pre-line;
+  }
+
+  .poem-attribution {
+    margin-top: 20px;
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
-    display: block;
+  }
+
+  /* ─── OUTCOME BLOCK ─── */
+  .outcome-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px 36px;
+    margin-bottom: 56px;
+  }
+
+  .outcome-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
     margin-bottom: 12px;
   }
 
-  /* ───── SECTION HEADER ───── */
-  .section-header {
-    margin-bottom: 40px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid var(--gold-border);
+  .outcome-question {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    line-height: 1.5;
   }
 
-  .section-header h1 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 22px;
-    color: var(--ink);
-    font-weight: normal;
-    line-height: 1.4;
-    margin-bottom: 0;
-  }
-
-  /* ───── QUOTE CARDS (photo behind) ───── */
-  .quote-card {
-    position: relative;
-    width: 100%;
-    height: 280px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .quote-card-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.02);
-    transition: transform 8s ease;
-  }
-
-  .quote-card:hover .quote-card-bg { transform: scale(1.06); }
-
-  .quote-card-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-  }
-
-  .quote-card-content {
-    position: relative;
-    z-index: 2;
-    padding: 40px 48px;
-    text-align: center;
-    max-width: 560px;
-  }
-
-  .quote-card blockquote {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1.55;
-    color: #FFFFFF;
-    margin: 0 0 16px;
-  }
-
-  .quote-card cite {
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(163,144,93,0.9);
-    font-style: normal;
-    display: block;
-  }
-
-  /* ───── SEASONS CARDS ───── */
-  .seasons-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .season-card {
-    background: var(--white);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
-
-  .season-icon {
-    font-size: 22px;
-    margin-bottom: 10px;
-    display: block;
-  }
-
-  .season-name {
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .season-body {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 14px;
-    line-height: 1.65;
-    color: var(--ink);
-  }
-
-  /* ───── CONTENT BLOCKS ───── */
-  .content-block {
-    margin-bottom: 40px;
-  }
-
-  .content-block h3 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 18px;
-    color: var(--ink);
-    font-weight: normal;
-    margin-bottom: 16px;
-  }
-
-  .body-text {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--mid);
-  }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--gold-border);
-    margin: 40px 0;
-  }
-
-  /* ───── POSITION GRID ───── */
-  .position-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .position-card {
-    background: var(--white);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius);
-    padding: 20px;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    text-align: left;
-    font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
-  }
-
-  .position-card:hover {
-    border-color: var(--gold);
-    background: var(--gold-fill);
-  }
-
-  .position-card.selected {
-    border-color: var(--gold);
-    background: var(--gold-fill);
-    box-shadow: 0 0 0 1px var(--gold);
-  }
-
-  .position-card.selected .pos-num { color: var(--gold); }
-
-  .pos-num {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    display: block;
-    margin-bottom: 6px;
-    transition: color 0.2s;
-  }
-
-  .pos-label {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--ink);
-    line-height: 1.4;
-  }
-
-  .position-card.selected .pos-label { color: var(--ink); }
-
-  .pos-check {
-    display: none;
-    float: right;
-    color: var(--gold);
-    font-size: 13px;
-    margin-left: 8px;
-  }
-  .position-card.selected .pos-check { display: inline; }
-
-  .privacy-note {
-    font-size: 12px;
-    color: var(--mid);
-    margin-top: 8px;
-    opacity: 0.7;
-  }
-
-  /* ───── WRITE-OUT SECTION ───── */
-  .outcome-block {
-    background: var(--white);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius);
-    padding: 28px 28px 24px;
-    margin-bottom: 40px;
-  }
-
-  .prompt-block {
-    margin-bottom: 40px;
-  }
-
-  .prompt-quote {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 19px;
-    line-height: 1.65;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-
-  .prompt-attr {
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 20px;
-  }
-
+  /* ─── TEXTAREAS ─── */
   textarea {
     width: 100%;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--gold-border);
-    border-radius: 0;
-    padding: 12px 0;
-    font-family: Georgia, 'Times New Roman', serif;
+    border-bottom: 1px solid rgba(163,144,93,0.25);
+    font-family: Georgia, serif;
     font-style: italic;
     font-size: 16px;
     line-height: 1.7;
-    color: var(--ink);
-    resize: none;
-    outline: none;
+    color: var(--text-primary);
+    resize: vertical;
     min-height: 100px;
+    outline: none;
+    padding: 10px 0;
     transition: border-color 0.2s;
-    -webkit-appearance: none;
   }
 
-  textarea::placeholder {
-    color: var(--gold-light);
+  textarea::placeholder { color: rgba(26,22,18,0.2); }
+  textarea:focus { border-bottom-color: rgba(163,144,93,0.7); }
+
+  /* ─── CONTENT BLOCKS (Sec 1.3) ─── */
+  .content-block { margin-bottom: 12px; }
+
+  .tony-callout {
+    border-left: 3px solid var(--gold);
+    padding: 4px 20px;
+    margin: 28px 0;
+  }
+
+  .tony-callout p {
+    font-family: Georgia, serif;
     font-style: italic;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.65;
   }
 
-  textarea:focus {
-    border-bottom-color: var(--gold);
-  }
-
-  /* ───── VISION PAYOFF ───── */
-  .vision-payoff {
-    background: var(--white);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin-top: 48px;
-  }
-
-  .vision-payoff .section-eyebrow {
-    font-size: 9px;
-    letter-spacing: 3px;
+  .principle-label {
+    font-size: 11px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
-    display: block;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--gold-border);
+    margin-bottom: 6px;
+    margin-top: 24px;
   }
 
-  .vision-entry {
-    margin-bottom: 28px;
+  /* ─── SEASON CARDS ─── */
+  .season-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
   }
 
-  .vision-entry-label {
-    font-size: 9px;
-    letter-spacing: 3px;
+  .season-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+  }
+
+  .season-name {
+    font-size: 11px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gold-light);
-    display: block;
+    color: var(--red);
     margin-bottom: 8px;
   }
 
-  .vision-entry-text {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 15px;
+  .season-card p {
+    font-size: 14px;
     line-height: 1.7;
-    color: var(--ink);
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  /* ─── POSITION CARDS ─── */
+  .positions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 28px 0;
+  }
+
+  .position-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+
+  .position-card:hover { border-color: rgba(163,144,93,0.5); }
+
+  .position-card.selected {
+    border-color: var(--red);
+    background: rgba(181,39,31,0.04);
+  }
+
+  .position-num {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--red);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    font-family: -apple-system, sans-serif;
+  }
+
+  .position-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .position-card.selected p { color: var(--red); }
+
+  .positions-private {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ─── VISION QUESTIONS ─── */
+  .vision-question-block { margin-bottom: 44px; }
+
+  .vision-question-prompt {
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .vision-question-attr {
+    font-size: 12px;
+    color: var(--gold);
+    font-family: Georgia, serif;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  /* ─── VISION PAYOFF ─── */
+  .vision-payoff {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 32px 36px;
+    margin-top: 52px;
+  }
+
+  .payoff-display {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-primary);
+    min-height: 60px;
     white-space: pre-wrap;
   }
 
-  .vision-entry-empty {
-    font-size: 13px;
-    color: var(--gold-light);
-    font-style: italic;
+  .payoff-placeholder {
+    color: rgba(26,22,18,0.2);
   }
 
-  /* ───── TONY AI CARD ───── */
+  /* ─── TONY AI CARD ─── */
   .tony-ai-card {
-    background: var(--ink);
-    color: var(--white);
-    border-radius: var(--radius);
-    padding: 24px 28px;
-    margin-top: 24px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 26px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
   }
 
-  .tony-ai-card .ai-eyebrow {
+  .tony-ai-content {}
+
+  .tony-ai-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+
+  .tony-ai-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .tony-ai-btn {
+    flex-shrink: 0;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    font-family: -apple-system, sans-serif;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+
+  .tony-ai-btn:hover { opacity: 0.88; }
+
+  /* ─── QUOTE CARDS ─── */
+  .quote-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .quote-card {
+    width: 100%;
+    height: 260px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.6));
+  }
+
+  .quote-card-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 560px;
+    padding: 24px;
+  }
+
+  .quote-card-text {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  .quote-card-attr {
     font-size: 9px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
-    display: block;
-    margin-bottom: 6px;
   }
 
-  .tony-ai-card .ai-body {
-    font-size: 14px;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.8);
-  }
-
-  .ai-btn {
-    flex-shrink: 0;
-    background: var(--gold);
-    color: var(--white);
-    border: none;
-    border-radius: var(--radius);
-    padding: 10px 20px;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: opacity 0.2s;
-  }
-
-  .ai-btn:hover { opacity: 0.85; }
-
-  /* ───── JOURNAL ───── */
-  .journal-entry {
-    margin-bottom: 36px;
-    padding-bottom: 36px;
-    border-bottom: 1px solid var(--gold-border);
-  }
-
-  .journal-entry:last-child {
-    border-bottom: none;
-  }
+  /* ─── JOURNAL ─── */
+  .journal-entry { margin-bottom: 52px; }
 
   .journal-label {
-    font-size: 9px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 12px;
+    color: var(--red);
+    margin-bottom: 4px;
   }
 
-  .journal-text {
-    font-family: Georgia, 'Times New Roman', serif;
+  .journal-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    letter-spacing: 0.3px;
+  }
+
+  .journal-hint {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
     font-style: italic;
-    font-size: 16px;
-    line-height: 1.75;
-    color: var(--ink);
-    white-space: pre-wrap;
   }
 
-  .journal-empty {
-    font-size: 14px;
-    color: var(--gold-light);
-    font-style: italic;
-    font-family: Georgia, 'Times New Roman', serif;
+  /* ─── FINAL ANCHOR ─── */
+  .final-anchor {
+    padding: 80px 0 80px;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
-  /* ───── LOVE NOTE ───── */
-  .love-note-block {
-    background: var(--white);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius);
-    padding: 32px;
-    margin-top: 48px;
-  }
-
-  .love-note-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  .btn-send {
-    background: var(--gold);
-    color: var(--white);
-    border: none;
-    border-radius: var(--radius);
-    padding: 11px 24px;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .btn-send:hover { opacity: 0.85; }
-
-  .btn-ghost {
-    background: none;
-    color: var(--mid);
-    border: 1px solid var(--gold-border);
-    border-radius: var(--radius);
-    padding: 11px 20px;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
-  /* ───── CLOSE SECTION ───── */
-  .close-block {
-    text-align: center;
-    padding: 56px 0 24px;
+  .final-anchor .section-title {
+    color: var(--red);
   }
 
   .close-ornament {
-    font-size: 14px;
-    letter-spacing: 12px;
-    color: var(--gold-light);
-    display: block;
-    margin-bottom: 28px;
+    text-align: center;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 14px;
+    margin: 56px 0 36px;
   }
 
-  .close-quote {
-    font-family: Georgia, 'Times New Roman', serif;
+  .close-headline {
+    font-family: Georgia, serif;
     font-style: italic;
     font-size: 22px;
-    color: var(--ink);
-    margin-bottom: 16px;
-    line-height: 1.45;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 14px;
   }
 
   .close-body {
     font-size: 15px;
-    color: var(--mid);
-    line-height: 1.8;
-    margin-bottom: 24px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.7;
+    margin-bottom: 14px;
   }
 
   .close-day2 {
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    font-size: 12px;
     color: var(--gold);
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 16px;
   }
 
-  /* ───── RESPONSIVE ───── */
-  @media (max-width: 700px) {
-    .sidebar { display: none; }
-    .mobile-nav { display: block; }
-    .main { margin-left: 0; padding-top: 50px; }
-    .section { padding: 32px 20px 60px; }
-    .seasons-grid { grid-template-columns: 1fr; }
-    .position-grid { grid-template-columns: 1fr; }
-    .quote-card { height: 220px; }
-    .quote-card-content { padding: 24px 24px; }
-    .quote-card blockquote { font-size: 18px; }
-    .tony-ai-card { flex-direction: column; align-items: flex-start; }
-    .love-note-actions { flex-direction: column; }
-    .btn-send, .btn-ghost { width: 100%; text-align: center; }
+  /* ─── MOBILE ─── */
+  @media (max-width: 680px) {
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: auto;
+      width: 100%;
+      height: 56px;
+      flex-direction: row;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .sidebar-brand {
+      padding: 0 16px;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+      height: 56px;
+    }
+
+    .sidebar-eyebrow { font-size: 8px; margin-bottom: 2px; }
+    .sidebar-day { font-size: 15px; }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      align-items: stretch;
+    }
+
+    .sidebar-nav a {
+      padding: 0 14px;
+      border-left: none;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      flex-direction: column;
+      gap: 2px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .nav-num { font-size: 10px; }
+
+    .sidebar-nav a.active {
+      border-left-color: transparent;
+      border-bottom-color: var(--red);
+    }
+
+    .main {
+      margin-left: 0;
+      margin-top: 56px;
+      padding: 0 20px 80px;
+    }
+
+    .section { padding: 48px 0 40px; }
+
+    .season-grid { grid-template-columns: 1fr; }
+    .positions-grid { grid-template-columns: 1fr; }
+
+    .quote-card { height: 200px; }
+    .quote-card-text { font-size: 17px; }
+
+    .welcome-block { padding: 24px 20px; }
+    .outcome-block { padding: 24px 20px; }
+    .vision-payoff { padding: 24px 20px; }
+
+    .tony-ai-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .tony-ai-btn { width: 100%; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── SIDEBAR (desktop) ── -->
-<aside class="sidebar">
+<!-- ═══════════════════════════ SIDEBAR ═══════════════════════════ -->
+<nav class="sidebar" id="sidebar">
   <div class="sidebar-brand">
-    <span class="eyebrow">Love &amp; Passion Weekend</span>
-    <span class="day-label">Day 1</span>
+    <div class="sidebar-eyebrow">Love and Passion</div>
+    <div class="sidebar-day">Day 1</div>
   </div>
-  <ul class="nav-list">
-    <li>
-      <button class="nav-btn active" data-section="foundation" onclick="showSection('foundation', this)">
-        <span class="nav-num">1</span> Foundation &amp; Vision
-      </button>
-    </li>
-    <li>
-      <button class="nav-btn" data-section="positions" onclick="showSection('positions', this)">
-        <span class="nav-num">2</span> Where Are You Now?
-      </button>
-    </li>
-    <li>
-      <button class="nav-btn" data-section="vision" onclick="showSection('vision', this)">
-        <span class="nav-num">3</span> Your Vision
-      </button>
-    </li>
-    <li>
-      <button class="nav-btn" data-section="journal" onclick="showSection('journal', this)">
-        <span class="nav-num">4</span> Your Journal
-      </button>
-    </li>
-  </ul>
-  <div class="sidebar-footer">Platinum · Tulum 2025</div>
-</aside>
-
-<!-- ── MOBILE NAV ── -->
-<nav class="mobile-nav">
-  <div class="mobile-nav-inner">
-    <button class="mobile-nav-btn active" data-section="foundation" onclick="showSection('foundation', this)">Foundation</button>
-    <button class="mobile-nav-btn" data-section="positions" onclick="showSection('positions', this)">Where Are You?</button>
-    <button class="mobile-nav-btn" data-section="vision" onclick="showSection('vision', this)">Your Vision</button>
-    <button class="mobile-nav-btn" data-section="journal" onclick="showSection('journal', this)">Journal</button>
+  <div class="sidebar-nav">
+    <a href="#section-1" class="active" data-section="1">
+      <span class="nav-num">1.</span>
+      <span>Foundation and Vision</span>
+    </a>
+    <a href="#section-2" data-section="2">
+      <span class="nav-num">2.</span>
+      <span>Where Are You Now?</span>
+    </a>
+    <a href="#section-3" data-section="3">
+      <span class="nav-num">3.</span>
+      <span>Your Vision for the Ultimate Relationship</span>
+    </a>
+    <a href="#section-4" data-section="4">
+      <span class="nav-num">4.</span>
+      <span>Inspiration</span>
+    </a>
+    <a href="#section-5" data-section="5">
+      <span class="nav-num">5.</span>
+      <span>Your Journal</span>
+    </a>
   </div>
 </nav>
 
-<!-- ── MAIN ── -->
+<!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
 <main class="main">
 
-  <!-- ════════════════════════════════════════
-       SECTION 1 · FOUNDATION & VISION
-       ════════════════════════════════════════ -->
-  <section id="foundation" class="section active">
+  <!-- ─── SECTION 1: FOUNDATION AND VISION ─── -->
+  <section class="section" id="section-1">
+    <div class="eyebrow">1. Foundation and Vision</div>
+    <h1 class="section-title">Foundation and Vision</h1>
 
-    <div class="section-header">
-      <span class="eyebrow">Day 1 · Foundation</span>
-      <h1>Foundation &amp; Vision</h1>
+    <!-- 1.1 Welcome -->
+    <div class="welcome-block">
+      <p>Welcome to Love and Passion: Our Ultimate Relationship Program. It is a privilege to be with you all once again, or possibly for the first time. We admire your willing hearts and respect the hunger and dedication to spend a week of our lives together all in the name of LOVE.</p>
+      <p>May we ignite our hearts, open our minds, engage in playful curiosity, laugh, enjoy each other's company, and allow grace-filled tears to flow. May we remember and forget in the same breath. May we notice what we have missed, and may we awaken to the love within us and all around us. In this space, we'll be diving deep enough to both lose ourselves and discover our true nature all at once.</p>
+      <p>This week, we invite you to decide to set expectations aside and step into the beauty of the reality of this experience we share here now. Let's jump heart first into all that we don't know, so we can emerge with the clarity to see our loved ones most accurately. After all, knowing unconditional love in this life is a gift precious beyond all comprehension.</p>
+      <p>We are all being called to love at the deepest level, let's take this journey together and discover something even more beautiful and magnificent than we have ever known before.</p>
+      <p>Thank you, we love you and are so grateful to share this with you.</p>
+      <div class="welcome-attribution">Tony and Sage Robbins</div>
     </div>
 
-    <!-- 1a · Seasons of Relationship -->
-    <div class="content-block">
-      <span class="eyebrow">The Seasons of Relationship</span>
-
-      <div class="seasons-grid">
-        <div class="season-card">
-          <span class="season-icon">🌱</span>
-          <span class="season-name">Spring</span>
-          <p class="season-body">"Springtime in the beginning of everything — is it hard or easy to grow? Incredibly easy. If you start a business in springtime, you think you're a genius. No, you're just in the right season."</p>
-        </div>
-        <div class="season-card">
-          <span class="season-icon">☀️</span>
-          <span class="season-name">Summer</span>
-          <p class="season-body">"What always follows spring is a testing time. Summer it's hot, it's a challenge. All of a sudden, the relationship doesn't feel effortless anymore."</p>
-        </div>
-        <div class="season-card">
-          <span class="season-icon">🍂</span>
-          <span class="season-name">Fall</span>
-          <p class="season-body">"If you make it through the testing time of summer, the universe or God seems to give us this cool season called fall — a reaping time where all of a sudden everything has the most magnificent colors, where everything is easy, fruits available. It's all there."</p>
-        </div>
-        <div class="season-card">
-          <span class="season-icon">❄️</span>
-          <span class="season-name">Winter</span>
-          <p class="season-body">"Winter is what makes us stronger. It bonds us the deepest part of our relationships — times where we came together when everything else looked like it was falling apart."</p>
-        </div>
-      </div>
+    <!-- Sage's poem -->
+    <div class="poem-block">
+      <div class="poem-lines">Love opens me,
+It calls me,
+Love reminds me,
+It humbles me,
+Love consumes me,
+It ignites me,
+Love stirs me,
+It awakens me,
+Love connects me,
+It flattens me,
+Love lifts me,
+It changes me,
+Love resurrects me,
+And frees me</div>
+      <div class="poem-attribution">— Sage Robbins</div>
     </div>
 
-    <!-- Quote card: Seasons -->
-    <div class="quote-card">
-      <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800')"></div>
-      <div class="quote-card-overlay"></div>
-      <div class="quote-card-content">
-        <blockquote>"There are seasons. And if you think everything's supposed to be springtime — you're going to be very frustrated and disappointed. But every season is designed by God for a higher purpose."</blockquote>
-        <cite>— Tony Robbins</cite>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- 1b · The Generous Lover -->
-    <div class="content-block">
-      <span class="eyebrow">The Generous Lover</span>
-
-      <!-- Quote card: Generous Lover -->
-      <div class="quote-card">
-        <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800')"></div>
-        <div class="quote-card-overlay"></div>
-        <div class="quote-card-content">
-          <blockquote>"What would a totally generous lover do for the one that they adore, for their beloved? What would they do?"</blockquote>
-          <cite>— Tony Robbins</cite>
-        </div>
-      </div>
-
-      <p class="body-text">
-        "If there's a theme of this program that will get you through all the seasons, it's you deciding that you are the source of the love in your relationship. As long as you're trying to get it from somebody, you're operating out of scarcity — and scarcity never feels good."
-      </p>
-      <br>
-      <p class="body-text">
-        "What if that's all you did? You just decided the love that I'm going to experience is the love that I'm giving. I'm not going to worry about getting it or not."
-      </p>
-    </div>
-
-    <!-- Quote card: Source of Love -->
-    <div class="quote-card">
-      <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800')"></div>
-      <div class="quote-card-overlay"></div>
-      <div class="quote-card-content">
-        <blockquote>"If you're sincerely generous in your love of this person and you're willing to give it openly and evenly, and you're not measuring what you're getting in return — it'll change everything."</blockquote>
-        <cite>— Tony Robbins</cite>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- 1c · Beginner's Mind -->
-    <div class="content-block">
-      <span class="eyebrow">Beginner's Mind</span>
-
-      <!-- Quote card: Beginner's Mind -->
-      <div class="quote-card">
-        <div class="quote-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800')"></div>
-        <div class="quote-card-overlay"></div>
-        <div class="quote-card-content">
-          <blockquote>"Start this week with a beginner's mind. A beginner's mind is open to anything. You don't have all the knowledge. You're curious. You're open. You're in awe. You want to learn."</blockquote>
-          <cite>— Tony Robbins</cite>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- ════════════════════════════════════════
-       SECTION 2 · WHERE ARE YOU NOW?
-       ════════════════════════════════════════ -->
-  <section id="positions" class="section">
-
-    <div class="section-header">
-      <span class="eyebrow">The Six Positions</span>
-      <h1>Where Are You Now?</h1>
-    </div>
-
-    <div class="position-grid" id="positionGrid">
-
-      <button class="position-card" data-pos="1" onclick="selectPosition(this)">
-        <span class="pos-num"><span class="pos-check">✦</span> Position 1</span>
-        <span class="pos-label">Unbelievable love and incredible passion</span>
-      </button>
-
-      <button class="position-card" data-pos="2" onclick="selectPosition(this)">
-        <span class="pos-num"><span class="pos-check">✦</span> Position 2</span>
-        <span class="pos-label">Deep love — aching for more passion</span>
-      </button>
-
-      <button class="position-card" data-pos="3" onclick="selectPosition(this)">
-        <span class="pos-num"><span class="pos-check">✦</span> Position 3</span>
-        <span class="pos-label">Staying for convenience</span>
-      </button>
-
-      <button class="position-card" data-pos="4" onclick="selectPosition(this)">
-        <span class="pos-num"><span class="pos-check">✦</span> Position 4</span>
-        <span class="pos-label">In it — planning your escape</span>
-      </button>
-
-      <button class="position-card" data-pos="5" onclick="selectPosition(this)">
-        <span class="pos-num"><span class="pos-check">✦</span> Position 5</span>
-        <span class="pos-label">Not in one, don't want to be right now</span>
-      </button>
-
-      <button class="position-card" data-pos="6" onclick="selectPosition(this)">
-        <span class="pos-num"><span class="pos-check">✦</span> Position 6</span>
-        <span class="pos-label">Not in one — and ready</span>
-      </button>
-
-    </div>
-
-    <p class="privacy-note">This is private.</p>
-
-  </section>
-
-
-  <!-- ════════════════════════════════════════
-       SECTION 3 · YOUR VISION
-       ════════════════════════════════════════ -->
-  <section id="vision" class="section">
-
-    <div class="section-header">
-      <span class="eyebrow">Day 1 · Write-Out</span>
-      <h1>Your Vision</h1>
-    </div>
-
-    <!-- Outcome -->
+    <!-- 1.2 Your Outcome for the Weekend -->
     <div class="outcome-block">
-      <span class="eyebrow">Your Outcome</span>
-      <p class="prompt-quote">What is your outcome for this weekend — and why is it a must for you?</p>
-      <textarea id="outcome" rows="4" placeholder="" oninput="saveField(this)"></textarea>
+      <div class="outcome-label">Your Outcome for the Weekend</div>
+      <div class="outcome-question">What is your outcome for this weekend — and why is it a must for you?</div>
+      <textarea
+        id="ta-outcome"
+        rows="4"
+        placeholder=""
+        oninput="save('outcome', this.value)"
+      ></textarea>
     </div>
 
-    <!-- Prompt 1 -->
-    <div class="prompt-block">
-      <p class="prompt-quote">"Describe it. What's this relationship all about? Who will it inspire? What will you do together? What will you share? What will you enjoy?"</p>
-      <span class="prompt-attr">— Tony Robbins</span>
-      <textarea id="vision1" rows="6" placeholder="Write it out." oninput="saveField(this); updatePayoff()"></textarea>
+    <!-- 1.3 How to Master Relationships -->
+    <div class="subsection-header">How to Master Relationships: State and Meaning</div>
+
+    <div class="content-block">
+      <p>There are only two things you really have to master to have an extraordinary, magnificent, and legendary relationship:</p>
     </div>
 
-    <hr class="divider">
-
-    <!-- Prompt 2 -->
-    <div class="prompt-block">
-      <p class="prompt-quote">"And then if you dare to be honest about why that vision has not yet been realized and what you can do to change it."</p>
-      <span class="prompt-attr">— Tony Robbins</span>
-      <textarea id="vision2" rows="6" placeholder="Be honest." oninput="saveField(this); updatePayoff()"></textarea>
+    <div style="display:flex;gap:14px;margin:20px 0 24px;">
+      <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 22px;text-align:center;">
+        <div class="principle-label" style="margin-top:0;">1</div>
+        <div style="font-family:Georgia,serif;font-style:italic;font-size:20px;color:var(--text-primary);margin-top:4px;">State</div>
+      </div>
+      <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 22px;text-align:center;">
+        <div class="principle-label" style="margin-top:0;">2</div>
+        <div style="font-family:Georgia,serif;font-style:italic;font-size:20px;color:var(--text-primary);margin-top:4px;">Meaning</div>
+      </div>
     </div>
 
-    <hr class="divider">
+    <div class="content-block">
+      <p>Your state is the single most important factor in influencing the quality of your relationship. Everything is filtered through it. When two happy people get together, what do you have? A happy couple. What happens when two really unhappy people get together? You have a really unhappy couple.</p>
+      <p>There are two things that affect your state:</p>
+    </div>
 
-    <!-- Prompt 3 -->
-    <div class="prompt-block">
-      <p class="prompt-quote">"What's most important to you in this relationship? What do you want to bring to it? Who are you going to bring to this relationship?"</p>
-      <span class="prompt-attr">— Tony Robbins</span>
-      <textarea id="vision3" rows="6" placeholder="" oninput="saveField(this); updatePayoff()"></textarea>
+    <div style="margin:12px 0 24px;padding-left:4px;">
+      <p style="margin-bottom:8px;"><span style="color:var(--red);font-size:13px;letter-spacing:1px;">1&nbsp;&nbsp;</span> Physiology</p>
+      <p style="margin-bottom:0;"><span style="color:var(--red);font-size:13px;letter-spacing:1px;">2&nbsp;&nbsp;</span> Focus / Language</p>
+    </div>
+
+    <div class="content-block">
+      <p>If you're going to be effective in any relationship, you have to understand what things mean. Being in a lousy state — from work, stress, finances, children, difficult people in your life — will block this, and it also comes from misinterpreting what your partner's intent was. You have to find the empowering meanings, rather than give things a disempowering meaning.</p>
+      <p>In order to master meaning, you have to understand three things:</p>
+    </div>
+
+    <div style="margin:12px 0 28px;padding-left:4px;">
+      <p style="margin-bottom:8px;"><span style="color:var(--red);font-size:13px;letter-spacing:1px;">1&nbsp;&nbsp;</span> The biochemical and physiological differences between women and men.</p>
+      <p style="margin-bottom:8px;"><span style="color:var(--red);font-size:13px;letter-spacing:1px;">2&nbsp;&nbsp;</span> How we've been raised to interpret and use language differently based on gender.</p>
+      <p style="margin-bottom:0;"><span style="color:var(--red);font-size:13px;letter-spacing:1px;">3&nbsp;&nbsp;</span> An understanding of the individual Model of the World — desires, fears, goals, needs, rules — of your partner and of yourself.</p>
+    </div>
+
+    <div class="tony-callout">
+      <p>The quality of your relationship is affected most powerfully by your state, not your partner's. If you want a great relationship, you must constantly put yourself and your partner in a great state.</p>
+    </div>
+
+    <!-- 1.3 The Seasons of Relationship -->
+    <div class="subsection-header">The Seasons of Relationship</div>
+
+    <div class="content-block">
+      <p>There are many seasons of our lives, seasons of relationship. The universe has set up the seasons in a very specific way — the seasons of nature, seasons of a human being's life, the seasons of a relationship.</p>
+    </div>
+
+    <div class="season-grid">
+      <div class="season-card">
+        <div class="season-name">Spring</div>
+        <p>Springtime in the beginning of everything — is it hard or easy to grow? Incredibly easy. If you start a business in springtime, you think you're a genius. No, you're just in the right season.</p>
+      </div>
+      <div class="season-card">
+        <div class="season-name">Summer</div>
+        <p>But then what always follows spring is a testing time. Summer — it's hot, it's a challenge. All of a sudden, the relationship doesn't feel effortless anymore. That happens to relationships too.</p>
+      </div>
+      <div class="season-card">
+        <div class="season-name">Fall</div>
+        <p>But if you make it through the testing time of summer, the universe or God seems to give us this cool season called fall. A reaping time where all of a sudden everything has the most magnificent colors, where everything is easy, fruits available. It's all there.</p>
+      </div>
+      <div class="season-card">
+        <div class="season-name">Winter</div>
+        <p>And when you think you're through it, of course, then winter comes. And if you don't understand that the seasons are coming, you're going to say "What's wrong with my relationship?" without understanding this is part of the process.</p>
+      </div>
+    </div>
+
+    <div class="tony-callout">
+      <p>There are seasons. And if you think everything's supposed to be springtime — you're going to be very frustrated and disappointed. But every season is designed for a higher purpose.</p>
+    </div>
+
+    <div class="content-block">
+      <p>You can accelerate the time that you spend in the greater seasons and spend a lot less time in the poorer, painful ones — but you can't avoid them completely. No one goes from springtime straight to fall. Some summers are hot, some are not so hot, some are long, some are short. Same thing with winters. But they're there.</p>
+      <p>Winter is what makes us stronger. Winter is what bonds us at the deepest part of our relationships. Times where we came together when everything else looked like it was falling apart — that bonded us deeper than anything.</p>
+    </div>
+
+    <!-- 1.3 The Generous Lover -->
+    <div class="subsection-header">The Generous Lover</div>
+
+    <div class="content-block">
+      <p>If there's a theme of this program that will get you through all the seasons, it's you deciding that you are the source of the love in your relationship. As long as you're trying to get it from somebody, you're operating out of scarcity — and scarcity never feels good. Doesn't feel good to you, doesn't feel good to the other.</p>
+    </div>
+
+    <div class="tony-callout">
+      <p>What would a totally generous lover do for the one that they adore, for their beloved? What would they do?</p>
+    </div>
+
+    <div class="content-block">
+      <p>In the beginning, almost everybody's a generous lover. What do you want? Anything. Whatever you take, I'll do it, I'll make it happen. Then after seven days, seven weeks, seven months, seven years — somewhere between seven hours and seventy years — their rules change. And like, "No, I love you if you do this. If you don't, I'm pissed off at you."</p>
+      <p>But if you're a generous lover, the whole game changes. What if that's all you did? You just decided the love that I'm going to experience is the love that I'm giving. I'm not going to worry about getting it or not.</p>
+      <p>Two things will happen. If you're single, you won't stay single very long unless you really want to be — because generous lovers are very rare. If you're in a relationship, you'll reignite it completely. At first, it won't be trusted. But after a while, if you're sincerely generous in your love of this person — willing to give it openly and evenly, not measuring what you're getting in return — it'll change everything.</p>
+    </div>
+
+  </section>
+
+  <!-- ─── SECTION 2: WHERE ARE YOU NOW? ─── -->
+  <section class="section" id="section-2">
+    <div class="eyebrow">2. Where Are You Now?</div>
+    <h2 class="section-title">Where Are You Now?</h2>
+    <div style="font-size:13px;color:var(--text-secondary);margin-top:-20px;margin-bottom:32px;letter-spacing:0.5px;">The Six Positions</div>
+
+    <div class="positions-grid" id="positions-grid">
+      <div class="position-card" data-pos="1" onclick="selectPosition(1)">
+        <div class="position-num">1</div>
+        <p>Unbelievable love and incredible passion</p>
+      </div>
+      <div class="position-card" data-pos="2" onclick="selectPosition(2)">
+        <div class="position-num">2</div>
+        <p>Deep love — aching for more passion</p>
+      </div>
+      <div class="position-card" data-pos="3" onclick="selectPosition(3)">
+        <div class="position-num">3</div>
+        <p>Staying for convenience</p>
+      </div>
+      <div class="position-card" data-pos="4" onclick="selectPosition(4)">
+        <div class="position-num">4</div>
+        <p>In it — planning your escape</p>
+      </div>
+      <div class="position-card" data-pos="5" onclick="selectPosition(5)">
+        <div class="position-num">5</div>
+        <p>Not in one, and don't want to be right now</p>
+      </div>
+      <div class="position-card" data-pos="6" onclick="selectPosition(6)">
+        <div class="position-num">6</div>
+        <p>Not in one — and ready</p>
+      </div>
+    </div>
+
+    <div class="positions-private">This is private.</div>
+  </section>
+
+  <!-- ─── SECTION 3: YOUR VISION ─── -->
+  <section class="section" id="section-3">
+    <div class="eyebrow">3. Your Vision for the Ultimate Relationship</div>
+    <h2 class="section-title">Your Vision for the Ultimate Relationship</h2>
+
+    <div class="vision-questions">
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">1. What do you want from a partner/relationship? Highlight the ones that are MUSTS.</div>
+        <textarea id="ta-v1" rows="4" oninput="save('v1', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">2. What's prevented you from having this in the past?</div>
+        <textarea id="ta-v2" rows="4" oninput="save('v2', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">3. What would you be willing to let go of to have this love?</div>
+        <textarea id="ta-v3" rows="4" oninput="save('v3', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">4. What needs to change NOW?</div>
+        <textarea id="ta-v4" rows="4" oninput="save('v4', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">5. Describe the relationship from HELL — what do you NOT want in a relationship? Now circle the ones that YOU do.</div>
+        <textarea id="ta-v5" rows="4" oninput="save('v5', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">6. Who would you need to become to attract this type of love? What qualities would you live daily? What would you bring?</div>
+        <textarea id="ta-v6" rows="4" oninput="save('v6', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">7. Describe it. What's this relationship all about? Who will it inspire? What will you do together? What will you share? What will you enjoy?</div>
+        <div class="vision-question-attr">— Tony Robbins</div>
+        <textarea id="ta-v7" rows="5" oninput="save('v7', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">8. And then if you dare to be honest about why that vision has not yet been realized — and what you can do to change it.</div>
+        <div class="vision-question-attr">— Tony Robbins</div>
+        <textarea id="ta-v8" rows="4" oninput="save('v8', this.value); updatePayoff()"></textarea>
+      </div>
+
+      <div class="vision-question-block">
+        <div class="vision-question-prompt">9. What's most important to you in this relationship? What do you want to bring to it? Who are you going to bring to this relationship?</div>
+        <div class="vision-question-attr">— Tony Robbins</div>
+        <textarea id="ta-v9" rows="4" oninput="save('v9', this.value); updatePayoff()"></textarea>
+      </div>
+
     </div>
 
     <!-- Vision Payoff -->
     <div class="vision-payoff">
-      <span class="section-eyebrow">Your Vision · Day 1</span>
-
-      <div class="vision-entry">
-        <span class="vision-entry-label">Outcome</span>
-        <div id="payoff-outcome" class="vision-entry-text vision-entry-empty">—</div>
+      <div class="eyebrow" style="margin-bottom:14px;">Your Vision</div>
+      <div class="payoff-display" id="payoff-display">
+        <span class="payoff-placeholder" id="payoff-placeholder">Your words from 7, 8, and 9 will appear here.</span>
       </div>
 
-      <div class="vision-entry">
-        <span class="vision-entry-label">The Vision</span>
-        <div id="payoff-vision1" class="vision-entry-text vision-entry-empty">—</div>
-      </div>
-
-      <div class="vision-entry">
-        <span class="vision-entry-label">The Truth</span>
-        <div id="payoff-vision2" class="vision-entry-text vision-entry-empty">—</div>
-      </div>
-
-      <div class="vision-entry" style="margin-bottom:0;">
-        <span class="vision-entry-label">What You Bring</span>
-        <div id="payoff-vision3" class="vision-entry-text vision-entry-empty">—</div>
-      </div>
-
-      <!-- Tony AI -->
       <div class="tony-ai-card">
-        <div>
-          <span class="ai-eyebrow">✦ Tony AI</span>
-          <p class="ai-body">Want to go deeper? Tony can respond to what you wrote.</p>
+        <div class="tony-ai-content">
+          <div class="tony-ai-eyebrow">✦ Tony AI</div>
+          <div class="tony-ai-body">Want to go deeper? Tony can respond to what you wrote.</div>
         </div>
-        <button class="ai-btn" onclick="tonyAIAlert()">Ask Tony →</button>
+        <button class="tony-ai-btn" onclick="tonyAIAlert()">Ask Tony →</button>
       </div>
     </div>
 
   </section>
 
+  <!-- ─── SECTION 4: INSPIRATION ─── -->
+  <section class="section" id="section-4">
+    <div class="eyebrow">4. Inspiration</div>
+    <h2 class="section-title">Inspiration</h2>
 
-  <!-- ════════════════════════════════════════
-       SECTION 4 · YOUR JOURNAL
-       ════════════════════════════════════════ -->
-  <section id="journal" class="section">
+    <div class="quote-cards">
 
-    <div class="section-header">
-      <span class="eyebrow">Day 1 · Companion</span>
-      <h1>Your Journal</h1>
-    </div>
-
-    <!-- Outcome -->
-    <div class="journal-entry">
-      <span class="journal-label">Your Outcome</span>
-      <div id="j-outcome" class="journal-text journal-empty">—</div>
-    </div>
-
-    <!-- Position -->
-    <div class="journal-entry">
-      <span class="journal-label">Where You Are Now</span>
-      <div id="j-position" class="journal-text journal-empty">—</div>
-    </div>
-
-    <!-- Vision 1 -->
-    <div class="journal-entry">
-      <span class="journal-label">The Vision</span>
-      <div id="j-vision1" class="journal-text journal-empty">—</div>
-    </div>
-
-    <!-- Vision 2 -->
-    <div class="journal-entry">
-      <span class="journal-label">The Truth</span>
-      <div id="j-vision2" class="journal-text journal-empty">—</div>
-    </div>
-
-    <!-- Vision 3 -->
-    <div class="journal-entry">
-      <span class="journal-label">What You Bring</span>
-      <div id="j-vision3" class="journal-text journal-empty">—</div>
-    </div>
-
-    <!-- Free notes -->
-    <div class="journal-entry">
-      <span class="journal-label">Notes</span>
-      <textarea id="notes" rows="6" placeholder="Anything else from today." oninput="saveField(this)" style="width:100%;"></textarea>
-    </div>
-
-    <!-- Tony AI -->
-    <div class="tony-ai-card" style="margin-bottom:48px;">
-      <div>
-        <span class="ai-eyebrow">✦ Tony AI</span>
-        <p class="ai-body">Want to go deeper? Tony can respond to what you wrote.</p>
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Love opens me, / It calls me, / Love reminds me, / It humbles me...</div>
+          <div class="quote-card-attr">— Sage Robbins</div>
+        </div>
       </div>
-      <button class="ai-btn" onclick="tonyAIAlert()">Ask Tony →</button>
-    </div>
 
-    <!-- Love Note -->
-    <div class="love-note-block">
-      <span class="eyebrow">For Your Partner</span>
-      <p class="prompt-quote" style="font-size:17px; margin-bottom:20px;">What do you want your beloved to know tonight?</p>
-      <textarea id="lovenote" rows="5" placeholder="" oninput="saveField(this)"></textarea>
-      <div class="love-note-actions">
-        <button class="btn-send" onclick="sendAlert()">Send it →</button>
-        <button class="btn-ghost">Keep it private</button>
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Love is the oxygen of life.</div>
+          <div class="quote-card-attr">— Tony Robbins</div>
+        </div>
       </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">What would a totally generous lover do for the one that they adore, for their beloved? What would they do?</div>
+          <div class="quote-card-attr">— Tony Robbins</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">There are seasons. And if you think everything's supposed to be springtime — you're going to be very frustrated and disappointed. But every season is designed for a higher purpose.</div>
+          <div class="quote-card-attr">— Tony Robbins</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Every moment is made glorious by the light of love.</div>
+          <div class="quote-card-attr">— Rumi</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Communication to a relationship is like oxygen to life. Without it... it dies.</div>
+          <div class="quote-card-attr">— Tony Robbins</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Do what you did in the beginning of a relationship and there won't be an end.</div>
+          <div class="quote-card-attr">— Tony Robbins</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Love never dies a natural death. It dies because we don't know how to replenish its source. It dies of blindness, and errors and betrayals.</div>
+          <div class="quote-card-attr">— Ana&iuml;s Nin</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">Love is the whole thing. We are only pieces.</div>
+          <div class="quote-card-attr">— Rumi</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">To love another person is to see the face of God.</div>
+          <div class="quote-card-attr">— Victor Hugo, Les Mis&eacute;rables</div>
+        </div>
+      </div>
+
+      <div class="quote-card" style="background-image:url('https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=800');">
+        <div class="quote-card-inner">
+          <div class="quote-card-text">If you are going to fight, do it naked, while holding hands. It&#39;s awfully hard to be mad at someone when you are both naked!</div>
+          <div class="quote-card-attr">— Father Pat, Catholic Priest</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SECTION 5: YOUR JOURNAL ─── -->
+  <section class="section" id="section-5">
+    <div class="eyebrow">5. Your Journal</div>
+    <h2 class="section-title">Your Journal</h2>
+
+    <div class="journal-entry">
+      <div class="journal-label">Principles</div>
+      <div class="journal-date" id="journal-date-1"></div>
+      <div class="journal-hint">What principles are you taking from today?</div>
+      <textarea id="ta-j1" rows="5" oninput="save('j1', this.value)"></textarea>
     </div>
 
-    <!-- Close -->
-    <div class="close-block">
-      <span class="close-ornament">✦  ✦  ✦</span>
-      <p class="close-quote">"Tonight you wrote what you want."</p>
-      <p class="close-body">Day 2 — Saturday, 10 AM — patterns and seasons.<br>Stay close to the one you love tonight.</p>
-      <span class="close-day2">Day 2 · Patterns &amp; Seasons of Relationships · Saturday, September 26 · 10:00 AM</span>
+    <div class="journal-entry">
+      <div class="journal-label">Insights</div>
+      <div class="journal-date" id="journal-date-2"></div>
+      <textarea id="ta-j2" rows="5" oninput="save('j2', this.value)"></textarea>
+    </div>
+
+    <div class="journal-entry">
+      <div class="journal-label">Actions</div>
+      <div class="journal-date" id="journal-date-3"></div>
+      <textarea id="ta-j3" rows="5" oninput="save('j3', this.value)"></textarea>
+    </div>
+
+    <div class="journal-block">
+      <div class="journal-label">For Your Partner</div>
+      <p style="font-size:15px;color:var(--text-secondary);margin-bottom:12px;line-height:1.7;">What do you want your beloved to know tonight?</p>
+      <textarea id="ta-beloved" rows="4" oninput="save('beloved', this.value)" placeholder=""></textarea>
+      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+        <button onclick="alert('In the full experience, this sends directly to your partner via text, email, or a saved card.')" style="font:500 9px/1 -apple-system,sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);background:transparent;border:1px solid rgba(200,75,49,0.3);border-radius:4px;padding:11px 18px;cursor:pointer;">Send it tonight →</button>
+        <button onclick="" style="font:500 9px/1 -apple-system,sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-secondary);background:none;border:none;padding:11px 0;cursor:pointer;">Keep it private</button>
+      </div>
     </div>
 
   </section>
+
+  <!-- ─── FINAL ANCHOR: YOUR ULTIMATE RELATIONSHIP ─── -->
+  <div class="final-anchor" id="final-anchor">
+    <div class="eyebrow">Your Ultimate Relationship</div>
+    <h2 class="section-title">Your Ultimate Relationship</h2>
+
+    <textarea
+      id="ta-ultimate"
+      rows="6"
+      placeholder="What does your ultimate relationship look like — and what will you do to create it?"
+      oninput="save('ultimate', this.value)"
+    ></textarea>
+
+    <div class="tony-ai-card" style="margin-top:32px;">
+      <div class="tony-ai-content">
+        <div class="tony-ai-eyebrow">✦ Tony AI</div>
+        <div class="tony-ai-body">Want to go deeper? Tony can respond to what you wrote.</div>
+      </div>
+      <button class="tony-ai-btn" onclick="tonyAIAlert()">Ask Tony →</button>
+    </div>
+
+    <div class="close-ornament">✦&nbsp;&nbsp;✦&nbsp;&nbsp;✦</div>
+
+    <div class="close-headline">Tonight you wrote what you want.</div>
+    <div class="close-body">Day 2 — Saturday, 10 AM — the patterns and seasons that shape every relationship. Stay close to the one you love tonight.</div>
+    <div class="close-day2">Day 2 · Patterns and Seasons of Relationships · Saturday, September 26 · 10:00 AM</div>
+  </div>
 
 </main>
 
+<!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
 <script>
-  // ── SECTION NAVIGATION ──
-  function showSection(id, btn) {
-    // Hide all sections
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-
-    // Deactivate all nav buttons (desktop + mobile)
-    document.querySelectorAll('.nav-btn, .mobile-nav-btn').forEach(b => b.classList.remove('active'));
-
-    // Activate all buttons matching this section
-    document.querySelectorAll('[data-section="' + id + '"]').forEach(b => b.classList.add('active'));
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Refresh journal view when entering it
-    if (id === 'journal') refreshJournal();
+  // ── localStorage helpers ──
+  function save(key, value) {
+    try { localStorage.setItem('lp_' + key, value); } catch(e) {}
   }
 
-  // ── POSITION SELECTION ──
-  function selectPosition(card) {
-    document.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    const pos = card.getAttribute('data-pos');
-    const label = card.querySelector('.pos-label').textContent;
-    localStorage.setItem('lp_position', pos);
-    localStorage.setItem('lp_position_label', label);
-    refreshJournal();
+  function load(key) {
+    try { return localStorage.getItem('lp_' + key) || ''; } catch(e) { return ''; }
   }
 
-  // ── FIELD PERSISTENCE ──
-  function saveField(el) {
-    localStorage.setItem('lp_' + el.id, el.value);
-    if (el.id === 'outcome') refreshJournal();
-  }
-
-  function restoreFields() {
-    ['outcome','vision1','vision2','vision3','notes','lovenote'].forEach(function(id) {
-      var val = localStorage.getItem('lp_' + id);
-      if (val) {
-        var el = document.getElementById(id);
-        if (el) el.value = val;
-      }
+  // ── Restore all fields ──
+  function restoreAll() {
+    const fields = ['outcome','v1','v2','v3','v4','v5','v6','v7','v8','v9','j1','j2','j3','ultimate'];
+    fields.forEach(function(key) {
+      var el = document.getElementById('ta-' + key);
+      if (el) el.value = load(key);
     });
 
-    // Restore position
-    var pos = localStorage.getItem('lp_position');
+    var pos = load('position');
     if (pos) {
-      var card = document.querySelector('[data-pos="' + pos + '"]');
+      var card = document.querySelector('.position-card[data-pos="' + pos + '"]');
       if (card) card.classList.add('selected');
     }
 
     updatePayoff();
-    refreshJournal();
   }
 
-  // ── VISION PAYOFF ──
-  function updatePayoff() {
-    var fields = {
-      'payoff-outcome': 'outcome',
-      'payoff-vision1': 'vision1',
-      'payoff-vision2': 'vision2',
-      'payoff-vision3': 'vision3'
-    };
+  // ── Position selection ──
+  function selectPosition(n) {
+    document.querySelectorAll('.position-card').forEach(function(c) {
+      c.classList.remove('selected');
+    });
+    var card = document.querySelector('.position-card[data-pos="' + n + '"]');
+    if (card) card.classList.add('selected');
+    save('position', n);
+  }
 
-    Object.keys(fields).forEach(function(payoffId) {
-      var srcId = fields[payoffId];
-      var el = document.getElementById(srcId);
-      var payoff = document.getElementById(payoffId);
-      var val = el ? el.value.trim() : '';
-      if (val) {
-        payoff.textContent = val;
-        payoff.classList.remove('vision-entry-empty');
-      } else {
-        payoff.textContent = '—';
-        payoff.classList.add('vision-entry-empty');
-      }
+  // ── Vision payoff ──
+  function updatePayoff() {
+    var v7 = (document.getElementById('ta-v7') || {}).value || '';
+    var v8 = (document.getElementById('ta-v8') || {}).value || '';
+    var v9 = (document.getElementById('ta-v9') || {}).value || '';
+    var combined = [v7, v8, v9].filter(function(s){ return s.trim(); }).join('\n\n');
+    var display = document.getElementById('payoff-display');
+    var placeholder = document.getElementById('payoff-placeholder');
+    if (!display) return;
+    if (combined.trim()) {
+      placeholder.style.display = 'none';
+      display.childNodes.forEach(function(n){ if(n !== placeholder) display.removeChild(n); });
+      var txt = document.createTextNode(combined);
+      display.appendChild(txt);
+    } else {
+      placeholder.style.display = '';
+      // remove any text nodes
+      var toRemove = [];
+      display.childNodes.forEach(function(n){ if(n.nodeType === 3) toRemove.push(n); });
+      toRemove.forEach(function(n){ display.removeChild(n); });
+    }
+  }
+
+  // ── Tony AI ──
+  function tonyAIAlert() {
+    alert("Tony AI opens here. In the full experience, Tony's voice engages directly with your vision — asking what's underneath, surfacing a pattern, or asking the one question that opens it further. Your entries are passed as context.");
+  }
+
+  // ── Date display ──
+  function setDates() {
+    var now = new Date();
+    var opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var str = now.toLocaleDateString('en-US', opts);
+    ['1','2','3'].forEach(function(n) {
+      var el = document.getElementById('journal-date-' + n);
+      if (el) el.textContent = str;
     });
   }
 
-  // Listen to outcome textarea for payoff update too
-  document.getElementById('outcome').addEventListener('input', updatePayoff);
-
-  // ── JOURNAL REFRESH ──
-  function refreshJournal() {
-    function setJournal(id, val, emptyText) {
-      var el = document.getElementById(id);
-      if (!el) return;
-      if (val && val.trim()) {
-        el.textContent = val.trim();
-        el.classList.remove('journal-empty');
-      } else {
-        el.textContent = emptyText || '—';
-        el.classList.add('journal-empty');
+  // ── Active nav on scroll ──
+  function updateNav() {
+    var sections = [
+      document.getElementById('section-1'),
+      document.getElementById('section-2'),
+      document.getElementById('section-3'),
+      document.getElementById('section-4'),
+      document.getElementById('section-5')
+    ];
+    var scrollY = window.scrollY + 120;
+    var active = '1';
+    sections.forEach(function(sec, i) {
+      if (sec && sec.offsetTop <= scrollY) {
+        active = String(i + 1);
       }
-    }
-
-    setJournal('j-outcome', document.getElementById('outcome').value);
-    setJournal('j-vision1', document.getElementById('vision1').value);
-    setJournal('j-vision2', document.getElementById('vision2').value);
-    setJournal('j-vision3', document.getElementById('vision3').value);
-
-    var posLabel = localStorage.getItem('lp_position_label');
-    var posNum = localStorage.getItem('lp_position');
-    if (posLabel && posNum) {
-      setJournal('j-position', 'Position ' + posNum + ' · ' + posLabel);
-    } else {
-      setJournal('j-position', null);
-    }
+    });
+    document.querySelectorAll('.sidebar-nav a').forEach(function(a) {
+      a.classList.toggle('active', a.getAttribute('data-section') === active);
+    });
   }
 
-  // Auto-sync journal when vision fields change
-  ['vision1','vision2','vision3'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.addEventListener('input', refreshJournal);
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  // ── Init ──
+  document.addEventListener('DOMContentLoaded', function() {
+    setDates();
+    restoreAll();
+    updateNav();
   });
-
-  // ── TONY AI ALERT ──
-  function tonyAIAlert() {
-    alert("Tony AI opens here.\n\nIn the full experience, Tony's voice engages directly with your vision — asking what's underneath, surfacing a pattern, or asking the one question that opens it further. Your entries are passed as context.");
-  }
-
-  // ── SEND ALERT ──
-  function sendAlert() {
-    alert("In the full experience, your note is delivered privately to your partner's device at the moment you choose — tonight, tomorrow morning, or held until the end of the weekend.");
-  }
-
-  // ── AUTO-RESIZE TEXTAREAS ──
-  function autoResize(el) {
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
-  }
-
-  document.querySelectorAll('textarea').forEach(function(ta) {
-    ta.addEventListener('input', function() { autoResize(this); });
-    autoResize(ta);
-  });
-
-  // ── INIT ──
-  restoreFields();
-
-  // Resize all textareas after restore
-  setTimeout(function() {
-    document.querySelectorAll('textarea').forEach(function(ta) { autoResize(ta); });
-  }, 50);
 </script>
+
 </body>
 </html>
