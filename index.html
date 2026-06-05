@@ -40,7 +40,7 @@
     font-size: 16px;
     line-height: 1.85;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -877,6 +877,7 @@
     flex: 1;
     min-height: 0;
     display: flex;
+    flex-direction: row;
     overflow: hidden;
   }
 
@@ -1717,6 +1718,8 @@
 
   /* ── COPYRIGHT ── */
   #copyright {
+    width: 100%;
+    flex-shrink: 0;
     text-align: center;
     padding: 24px 32px;
     font-family: 'SuisseIntl', sans-serif;
@@ -1893,19 +1896,25 @@
 
   /* ── SIDEBAR PROGRESS FOOTER ── */
   #main-sidebar #wb-progress {
-    margin: 0 0 8px 0;
-    height: 3px;
-    background: rgba(163,144,93,0.22);
-    border-radius: 2px;
+    margin: 0 0 10px 0;
+    height: 5px;
+    background: rgba(163,144,93,0.2);
+    border-radius: 3px;
     overflow: hidden;
+  }
+  #main-sidebar #wb-progress-bar {
+    height: 100%;
+    background: #C84B31;
+    border-radius: 3px;
+    transition: width 0.4s ease;
   }
   #main-sidebar #wb-progress-label {
     margin: 0;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: rgba(74,69,64,0.5);
+    color: #4A4540;
   }
 
   /* ── JOURNAL HINT ── */
@@ -2523,8 +2532,8 @@ function switchArea(area, tab) { switchMainArea(area, tab); }
 const wbSections = ['foundation', 'where', 'vision'];
 const wbLabels = ['Section 1 of 3', 'Section 2 of 3', 'Section 3 of 3'];
 const wbProgress = ['33%', '66%', '100%'];
-const wbBannerNums = ['Section 01', 'Section 02', 'Section 03', 'Section 04'];
-const wbBannerNames = ['Foundation and Vision', 'Where Are You Now?', 'Your Vision for the Ultimate Relationship', 'Your Ultimate Relationship'];
+const wbBannerNums = ['Section 01', 'Section 02', 'Section 03'];
+const wbBannerNames = ['Foundation and Vision', 'Where Are You Now?', 'Your Vision for the Ultimate Relationship'];
 
 function switchWbSection(section, navItem) {
   // If we’re on a different area, switch to workbook first
